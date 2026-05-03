@@ -1,0 +1,37 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.unum.com/v1/eoi/submissions",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "memberId": "MBR-00123456",
+      "groupId": "GRP-10042",
+      "productType": "life",
+      "requestedBenefitAmount": 200000.00,
+      "healthAnswers": {
+        "currentlyTreatedForCondition": false,
+        "hospitalizedPast12Months": false,
+        "tobaccoUser": false
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "submissionId": "EOI-20260529-04421",
+      "memberId": "MBR-00123456",
+      "groupId": "GRP-10042",
+      "productType": "life",
+      "requestedBenefitAmount": 200000.00,
+      "status": "pending",
+      "submittedAt": "2026-05-29T11:00:00Z",
+      "updatedAt": "2026-05-29T11:00:00Z"
+    }
+  }
+}

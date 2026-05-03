@@ -1,0 +1,186 @@
+title: Unum Vocabulary
+description: >-
+  Domain vocabulary for the Unum benefits administration platform, covering
+  insurance products, HR integration, leave management, and eligibility concepts.
+version: '1.0'
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Insurance
+  - Benefits Administration
+  - HR Integration
+  - Leave Management
+
+terms:
+  - term: Member
+    definition: >-
+      An employee or dependent enrolled in Unum benefit coverage through an
+      employer group.
+    related:
+      - Eligibility
+      - Coverage
+      - Enrollment
+
+  - term: Group
+    definition: >-
+      An employer organization that has contracted with Unum to provide
+      insurance benefits to its employees.
+    related:
+      - Member
+      - Billing
+
+  - term: Eligibility
+    definition: >-
+      The determination of whether an employee meets the criteria to participate
+      in Unum benefit plans based on employment status, hours worked, and
+      waiting periods.
+    related:
+      - Member
+      - Enrollment
+
+  - term: Coverage
+    definition: >-
+      An active insurance policy benefit provided to a member, including the
+      product type, plan code, and benefit amount.
+    related:
+      - Member
+      - Plan
+
+  - term: Enrollment
+    definition: >-
+      The process by which an eligible employee selects benefit coverage options
+      during open enrollment, a qualifying life event, or initial eligibility.
+    related:
+      - Election
+      - Coverage
+      - EOI
+
+  - term: Election
+    definition: >-
+      A specific benefit selection made by a member during enrollment, specifying
+      the product type, coverage level, and benefit amount chosen.
+    related:
+      - Enrollment
+      - Coverage
+
+  - term: EOI
+    definition: >-
+      Evidence of Insurability. A health questionnaire and underwriting process
+      required when a member applies for benefit amounts above the guaranteed
+      issue limit.
+    synonyms:
+      - Evidence of Insurability
+    related:
+      - Enrollment
+      - Underwriting
+
+  - term: Guaranteed Issue
+    definition: >-
+      The maximum benefit amount an employee can elect without providing
+      evidence of insurability (EOI).
+    related:
+      - EOI
+      - Enrollment
+
+  - term: Leave Request
+    definition: >-
+      A formal request for an approved absence from work, including FMLA,
+      state leave, short-term disability, personal leave, or military leave.
+    related:
+      - FMLA
+      - Short-Term Disability
+      - Absence Management
+
+  - term: FMLA
+    definition: >-
+      Family and Medical Leave Act. A federal law providing eligible employees
+      with up to 12 weeks of unpaid, job-protected leave per year for qualifying
+      family and medical reasons.
+    synonyms:
+      - Family and Medical Leave Act
+    related:
+      - Leave Request
+      - State Leave
+
+  - term: Short-Term Disability
+    definition: >-
+      Insurance coverage that replaces a portion of an employee's income when
+      they are unable to work due to a non-work-related illness or injury,
+      typically for periods of up to 26 weeks.
+    synonyms:
+      - STD
+    related:
+      - Long-Term Disability
+      - Leave Request
+
+  - term: Long-Term Disability
+    definition: >-
+      Insurance coverage that replaces a portion of income for employees who
+      are unable to work for an extended period, typically beginning after
+      short-term disability benefits end.
+    synonyms:
+      - LTD
+    related:
+      - Short-Term Disability
+
+  - term: HR Connect
+    definition: >-
+      Unum's API integration platform that creates a secure, real-time
+      connection between Unum benefits and major HR systems such as Workday,
+      ADP, and UKG.
+    related:
+      - Eligibility
+      - Enrollment
+      - HRIS
+
+  - term: HRIS
+    definition: >-
+      Human Resource Information System. Enterprise software used to manage
+      employee data, payroll, benefits, and HR workflows.
+    synonyms:
+      - HCM
+      - Human Capital Management
+    related:
+      - HR Connect
+      - Integration
+
+  - term: Life Event
+    definition: >-
+      A qualifying change in an employee's life circumstances (marriage,
+      birth, divorce, job change) that triggers a special enrollment period
+      outside of open enrollment.
+    related:
+      - Enrollment
+      - Eligibility
+
+  - term: Premium
+    definition: >-
+      The periodic payment made by an employer and/or employee for insurance
+      coverage, calculated based on benefit elections and coverage levels.
+    related:
+      - Billing
+      - Coverage
+
+  - term: Billing Invoice
+    definition: >-
+      A periodic statement issued to an employer group detailing premium
+      charges owed to Unum for active benefit coverages.
+    related:
+      - Premium
+      - Group
+
+  - term: Plan Year
+    definition: >-
+      The 12-month period for which an insurance plan is in effect, typically
+      coinciding with the calendar year or an employer's benefit year.
+    related:
+      - Enrollment
+      - Eligibility
+
+  - term: Coverage Level
+    definition: >-
+      The tier of coverage elected by a member, such as employee-only,
+      employee + spouse, employee + children, or family.
+    related:
+      - Enrollment
+      - Premium

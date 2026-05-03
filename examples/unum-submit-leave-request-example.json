@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.unum.com/v1/leave/requests",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "memberId": "MBR-00123456",
+      "groupId": "GRP-10042",
+      "leaveType": "fmla",
+      "reason": "Serious health condition requiring ongoing treatment",
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-01",
+      "continuousLeave": true,
+      "intermittentLeave": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "requestId": "LVR-20260529-00981",
+      "memberId": "MBR-00123456",
+      "groupId": "GRP-10042",
+      "leaveType": "fmla",
+      "reason": "Serious health condition requiring ongoing treatment",
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-01",
+      "status": "pending",
+      "continuousLeave": true,
+      "intermittentLeave": false,
+      "createdAt": "2026-05-29T10:15:00Z",
+      "updatedAt": "2026-05-29T10:15:00Z"
+    }
+  }
+}

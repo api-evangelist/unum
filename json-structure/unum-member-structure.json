@@ -1,0 +1,32 @@
+{
+  "title": "Unum Member Structure",
+  "description": "JSON structure documentation for the Unum Member resource",
+  "type": "object",
+  "fields": [
+    { "name": "memberId", "type": "string", "required": true, "description": "Unique Unum member identifier" },
+    { "name": "groupId", "type": "string", "required": true, "description": "Employer group identifier" },
+    { "name": "firstName", "type": "string", "required": true, "description": "Member first name" },
+    { "name": "lastName", "type": "string", "required": true, "description": "Member last name" },
+    { "name": "dateOfBirth", "type": "string (date)", "required": true, "description": "Date of birth in ISO 8601 format" },
+    { "name": "employeeId", "type": "string", "required": true, "description": "Employer-assigned employee ID" },
+    { "name": "hireDate", "type": "string (date)", "required": true, "description": "Employee hire date" },
+    { "name": "employmentStatus", "type": "string (enum)", "required": true, "description": "active | terminated | on-leave" },
+    { "name": "effectiveDate", "type": "string (date)", "required": true, "description": "Benefits eligibility effective date" },
+    { "name": "terminationDate", "type": "string (date)", "required": false, "description": "Benefits eligibility termination date" },
+    { "name": "coverages", "type": "array<Coverage>", "required": false, "description": "Active benefit coverages" },
+    { "name": "createdAt", "type": "string (date-time)", "required": false, "description": "Record creation timestamp" },
+    { "name": "updatedAt", "type": "string (date-time)", "required": false, "description": "Record last updated timestamp" }
+  ],
+  "nested": {
+    "Coverage": {
+      "fields": [
+        { "name": "productType", "type": "string (enum)", "required": false, "description": "disability | life | dental | vision | critical-illness | accident" },
+        { "name": "planCode", "type": "string", "required": false, "description": "Unum plan code" },
+        { "name": "benefitAmount", "type": "number", "required": false, "description": "Coverage amount in USD" },
+        { "name": "effectiveDate", "type": "string (date)", "required": false, "description": "Coverage effective date" },
+        { "name": "terminationDate", "type": "string (date)", "required": false, "description": "Coverage termination date" },
+        { "name": "status", "type": "string (enum)", "required": false, "description": "active | pending | terminated" }
+      ]
+    }
+  }
+}

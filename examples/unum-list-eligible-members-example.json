@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.unum.com/v1/eligibility/members?groupId=GRP-10042&effectiveDate=2026-01-01&page=1&limit=10",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "data": [
+        {
+          "memberId": "MBR-00123456",
+          "groupId": "GRP-10042",
+          "firstName": "Jane",
+          "lastName": "Smith",
+          "dateOfBirth": "1985-07-15",
+          "employeeId": "EMP-9821",
+          "hireDate": "2018-03-01",
+          "employmentStatus": "active",
+          "effectiveDate": "2026-01-01",
+          "coverages": [
+            {
+              "productType": "disability",
+              "planCode": "STD-BASIC-2026",
+              "benefitAmount": 2500.00,
+              "effectiveDate": "2026-01-01",
+              "status": "active"
+            },
+            {
+              "productType": "life",
+              "planCode": "LIFE-1X-2026",
+              "benefitAmount": 75000.00,
+              "effectiveDate": "2026-01-01",
+              "status": "active"
+            }
+          ],
+          "createdAt": "2018-03-01T09:00:00Z",
+          "updatedAt": "2026-01-02T14:30:00Z"
+        }
+      ],
+      "total": 248,
+      "page": 1,
+      "limit": 10
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/unum/main/json-schema/unum-leave-request-schema.json",
+  "title": "Unum Leave Request",
+  "description": "A leave or absence request submitted through the Unum Leave Management API",
+  "type": "object",
+  "required": ["requestId", "memberId", "groupId", "leaveType", "startDate", "status"],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique leave request identifier",
+      "example": "LVR-20260529-00981"
+    },
+    "memberId": {
+      "type": "string",
+      "description": "Member identifier"
+    },
+    "groupId": {
+      "type": "string",
+      "description": "Employer group identifier"
+    },
+    "leaveType": {
+      "type": "string",
+      "enum": ["fmla", "state-leave", "short-term-disability", "personal", "military"],
+      "description": "Type of leave requested"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason for leave"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Leave start date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Expected leave end date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "denied", "closed"],
+      "description": "Current request status"
+    },
+    "continuousLeave": {
+      "type": "boolean",
+      "description": "Whether leave is continuous"
+    },
+    "intermittentLeave": {
+      "type": "boolean",
+      "description": "Whether leave is intermittent"
+    },
+    "returnToWorkDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Actual or expected return to work date"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

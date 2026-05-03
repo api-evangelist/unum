@@ -1,0 +1,158 @@
+extends: spectral:oas
+rules:
+  # Unum API naming conventions
+  unum-operation-ids-camel-case:
+    description: Operation IDs must use camelCase
+    message: "Operation ID '{{value}}' must be camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  unum-path-kebab-case:
+    description: Path segments must use kebab-case
+    message: "Path '{{path}}' must use kebab-case segments"
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}-]+)+$"
+
+  unum-require-group-id:
+    description: Collection endpoints should require groupId query parameter for multi-tenant isolation
+    message: "Collection endpoint '{{path}}' should require a groupId query parameter"
+    severity: warn
+    given: "$.paths[?(!@property.match(/{.*}/))].get"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            parameters:
+              type: array
+              contains:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    enum: [groupId]
+                  required:
+                    type: boolean
+                    enum: [true]
+
+  unum-require-pagination:
+    description: List operations must support pagination parameters
+    message: "List operation should include page and limit parameters"
+    severity: warn
+    given: "$.paths[*].get"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            parameters:
+              type: array
+              contains:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    enum: [page, limit]
+
+  unum-dates-iso8601:
+    description: Date fields should use ISO 8601 format
+    message: "Date field '{{path}}' should use format: date or date-time"
+    severity: warn
+    given: "$.components.schemas[*].properties[?(@.type == 'string')]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          if:
+            properties:
+              description:
+                type: string
+                pattern: "[Dd]ate|[Tt]ime"
+          then:
+            properties:
+              format:
+                type: string
+                enum: [date, date-time]
+
+  unum-response-envelope:
+    description: List responses should use a data envelope with pagination metadata
+    message: "List response should include data array, total, page, and limit fields"
+    severity: warn
+    given: "$.paths[*].get.responses.200.content.application/json.schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            properties:
+              type: object
+              required: [data]
+
+  unum-error-schema:
+    description: Error responses must use consistent error schema with code and message
+    message: "Error response should reference the standard Error schema"
+    severity: warn
+    given: "$.paths[*][*].responses[?(@property >= '400')].content.application/json.schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            $ref:
+              type: string
+
+  unum-oauth2-security:
+    description: All paths must declare OAuth2 security
+    message: "Operation at '{{path}}' should declare OAuth2 security requirements"
+    severity: warn
+    given: "$.paths[*][get,post,put,delete]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          anyOf:
+            - required: [security]
+            - properties:
+                operationId:
+                  type: string
+                  enum: [getAccessToken]
+
+  unum-operation-summaries-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z0-9]* ?)+$"
+
+  unum-tags-defined:
+    description: All operation tags must reference tags defined in the top-level tags array
+    message: "Operation uses undefined tag '{{value}}'"
+    severity: warn
+    given: "$.paths[*][*].tags[*]"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Eligibility
+          - Enrollment
+          - Leave Management
+          - Evidence of Insurability
+          - Billing
+          - Authentication

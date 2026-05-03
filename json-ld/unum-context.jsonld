@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "unum": "https://api.unum.com/v1/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Member": "schema:Person",
+    "memberId": { "@id": "schema:identifier", "@type": "xsd:string" },
+    "groupId": { "@id": "unum:groupId", "@type": "xsd:string" },
+    "firstName": { "@id": "schema:givenName", "@type": "xsd:string" },
+    "lastName": { "@id": "schema:familyName", "@type": "xsd:string" },
+    "dateOfBirth": { "@id": "schema:birthDate", "@type": "xsd:date" },
+    "employeeId": { "@id": "schema:employeeID", "@type": "xsd:string" },
+    "hireDate": { "@id": "schema:startDate", "@type": "xsd:date" },
+    "employmentStatus": { "@id": "schema:employmentType", "@type": "xsd:string" },
+    "effectiveDate": { "@id": "unum:effectiveDate", "@type": "xsd:date" },
+    "terminationDate": { "@id": "unum:terminationDate", "@type": "xsd:date" },
+    "coverages": { "@id": "unum:coverages", "@container": "@set" },
+
+    "Coverage": "schema:InsurancePolicy",
+    "productType": { "@id": "schema:additionalType", "@type": "xsd:string" },
+    "planCode": { "@id": "unum:planCode", "@type": "xsd:string" },
+    "benefitAmount": { "@id": "schema:price", "@type": "xsd:decimal" },
+    "coverageLevel": { "@id": "unum:coverageLevel", "@type": "xsd:string" },
+
+    "LeaveRequest": "schema:EventReservation",
+    "requestId": { "@id": "schema:reservationId", "@type": "xsd:string" },
+    "leaveType": { "@id": "unum:leaveType", "@type": "xsd:string" },
+    "startDate": { "@id": "schema:startDate", "@type": "xsd:date" },
+    "endDate": { "@id": "schema:endDate", "@type": "xsd:date" },
+    "returnToWorkDate": { "@id": "unum:returnToWorkDate", "@type": "xsd:date" },
+
+    "EoiSubmission": "schema:MedicalCondition",
+    "submissionId": { "@id": "schema:identifier", "@type": "xsd:string" },
+    "requestedBenefitAmount": { "@id": "schema:price", "@type": "xsd:decimal" },
+
+    "BillingInvoice": "schema:Invoice",
+    "invoiceId": { "@id": "schema:identifier", "@type": "xsd:string" },
+    "totalPremium": { "@id": "schema:totalPrice", "@type": "xsd:decimal" },
+    "billingPeriodStart": { "@id": "schema:billingStart", "@type": "xsd:date" },
+    "billingPeriodEnd": { "@id": "schema:billingEnd", "@type": "xsd:date" },
+    "dueDate": { "@id": "schema:paymentDueDate", "@type": "xsd:date" },
+
+    "createdAt": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "updatedAt": { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+    "status": { "@id": "unum:status", "@type": "xsd:string" }
+  }
+}

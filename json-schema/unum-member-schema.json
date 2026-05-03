@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/unum/main/json-schema/unum-member-schema.json",
+  "title": "Unum Member",
+  "description": "A member enrolled in Unum benefits through an employer group",
+  "type": "object",
+  "required": ["memberId", "groupId", "firstName", "lastName", "dateOfBirth", "employeeId", "hireDate", "employmentStatus", "effectiveDate"],
+  "properties": {
+    "memberId": {
+      "type": "string",
+      "description": "Unique Unum member identifier",
+      "example": "MBR-00123456"
+    },
+    "groupId": {
+      "type": "string",
+      "description": "Employer group identifier",
+      "example": "GRP-10042"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Member first name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Member last name"
+    },
+    "dateOfBirth": {
+      "type": "string",
+      "format": "date",
+      "description": "Member date of birth (ISO 8601)"
+    },
+    "employeeId": {
+      "type": "string",
+      "description": "Employer-assigned employee identifier"
+    },
+    "hireDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Employee hire date"
+    },
+    "employmentStatus": {
+      "type": "string",
+      "enum": ["active", "terminated", "on-leave"],
+      "description": "Current employment status"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Benefits eligibility effective date"
+    },
+    "terminationDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Benefits eligibility termination date"
+    },
+    "coverages": {
+      "type": "array",
+      "description": "Active benefit coverages",
+      "items": {
+        "$ref": "#/definitions/Coverage"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record last updated timestamp"
+    }
+  },
+  "definitions": {
+    "Coverage": {
+      "type": "object",
+      "description": "A specific benefit coverage for a member",
+      "properties": {
+        "productType": {
+          "type": "string",
+          "enum": ["disability", "life", "dental", "vision", "critical-illness", "accident"],
+          "description": "Type of insurance product"
+        },
+        "planCode": {
+          "type": "string",
+          "description": "Unum plan code"
+        },
+        "benefitAmount": {
+          "type": "number",
+          "format": "double",
+          "description": "Coverage benefit amount in USD"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Coverage effective date"
+        },
+        "terminationDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Coverage termination date"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "pending", "terminated"],
+          "description": "Coverage status"
+        }
+      }
+    }
+  }
+}

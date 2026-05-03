@@ -1,0 +1,373 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Unum Benefits Administration"
+  description: >-
+    Workflow capability for Unum benefits administration, combining eligibility
+    management, enrollment processing, EOI handling, leave management, and
+    billing operations. Designed for HR administrators, benefits coordinators,
+    and HR technology integration partners who manage employee benefits
+    lifecycle from onboarding through termination.
+  tags:
+    - Unum
+    - Benefits Administration
+    - HR Integration
+    - Insurance
+    - Leave Management
+    - Eligibility
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      UNUM_CLIENT_ID: UNUM_CLIENT_ID
+      UNUM_CLIENT_SECRET: UNUM_CLIENT_SECRET
+
+capability:
+  consumes:
+    - import: unum-hr-connect
+      location: ./shared/hr-connect.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: unum-benefits-api
+      description: "Unified REST API for Unum benefits administration workflows."
+      resources:
+        - path: /v1/members
+          name: members
+          description: "Member eligibility management"
+          operations:
+            - method: GET
+              name: list-members
+              description: "List eligible members for an employer group"
+              call: "unum-hr-connect.list-eligible-members"
+              with:
+                groupId: "rest.groupId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-member
+              description: "Submit member eligibility information"
+              call: "unum-hr-connect.submit-member-eligibility"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/members/{memberId}
+          name: member
+          description: "Individual member operations"
+          operations:
+            - method: GET
+              name: get-member
+              description: "Get eligibility details for a member"
+              call: "unum-hr-connect.get-member-eligibility"
+              with:
+                memberId: "rest.memberId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: update-member
+              description: "Update eligibility for a member"
+              call: "unum-hr-connect.update-member-eligibility"
+              with:
+                memberId: "rest.memberId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: terminate-member
+              description: "Terminate member eligibility"
+              call: "unum-hr-connect.terminate-member-eligibility"
+              with:
+                memberId: "rest.memberId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/enrollments
+          name: enrollments
+          description: "Benefit enrollment elections"
+          operations:
+            - method: GET
+              name: list-enrollments
+              description: "List enrollment elections for a group"
+              call: "unum-hr-connect.list-enrollment-elections"
+              with:
+                groupId: "rest.groupId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-enrollment
+              description: "Submit a new enrollment election"
+              call: "unum-hr-connect.submit-enrollment-election"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/leave-requests
+          name: leave-requests
+          description: "Leave and absence requests"
+          operations:
+            - method: GET
+              name: list-leave-requests
+              description: "List leave requests for a group"
+              call: "unum-hr-connect.list-leave-requests"
+              with:
+                groupId: "rest.groupId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-leave-request
+              description: "Submit a new leave request"
+              call: "unum-hr-connect.submit-leave-request"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/leave-requests/{requestId}
+          name: leave-request
+          description: "Individual leave request operations"
+          operations:
+            - method: GET
+              name: get-leave-request
+              description: "Get leave request details"
+              call: "unum-hr-connect.get-leave-request"
+              with:
+                requestId: "rest.requestId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/eoi-submissions
+          name: eoi-submissions
+          description: "Evidence of insurability submissions"
+          operations:
+            - method: GET
+              name: list-eoi-submissions
+              description: "List EOI submissions for a group"
+              call: "unum-hr-connect.list-eoi-submissions"
+              with:
+                groupId: "rest.groupId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-eoi-submission
+              description: "Submit a new EOI application"
+              call: "unum-hr-connect.submit-eoi"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/eoi-submissions/{submissionId}
+          name: eoi-submission
+          description: "Individual EOI submission"
+          operations:
+            - method: GET
+              name: get-eoi-submission
+              description: "Get EOI submission status and details"
+              call: "unum-hr-connect.get-eoi-submission"
+              with:
+                submissionId: "rest.submissionId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/billing-invoices
+          name: billing-invoices
+          description: "Premium billing invoices"
+          operations:
+            - method: GET
+              name: list-billing-invoices
+              description: "List billing invoices for an employer group"
+              call: "unum-hr-connect.list-billing-invoices"
+              with:
+                groupId: "rest.groupId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/billing-invoices/{invoiceId}
+          name: billing-invoice
+          description: "Individual billing invoice"
+          operations:
+            - method: GET
+              name: get-billing-invoice
+              description: "Get billing invoice details"
+              call: "unum-hr-connect.get-billing-invoice"
+              with:
+                invoiceId: "rest.invoiceId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: unum-benefits-mcp
+      transport: http
+      description: "MCP server for AI-assisted Unum benefits administration workflows."
+      tools:
+        - name: list-members
+          description: "List eligible members for an employer group"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.list-eligible-members"
+          with:
+            groupId: "tools.groupId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-member
+          description: "Get eligibility details for a specific member"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.get-member-eligibility"
+          with:
+            memberId: "tools.memberId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-member
+          description: "Submit new member eligibility to Unum"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "unum-hr-connect.submit-member-eligibility"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-member
+          description: "Update existing member eligibility information"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "unum-hr-connect.update-member-eligibility"
+          with:
+            memberId: "tools.memberId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: terminate-member
+          description: "Terminate eligibility for a member"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "unum-hr-connect.terminate-member-eligibility"
+          with:
+            memberId: "tools.memberId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-enrollments
+          description: "List benefit enrollment elections for a group"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.list-enrollment-elections"
+          with:
+            groupId: "tools.groupId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-enrollment
+          description: "Submit a new benefit enrollment election for a member"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "unum-hr-connect.submit-enrollment-election"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-leave-requests
+          description: "List leave and absence requests for a group"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.list-leave-requests"
+          with:
+            groupId: "tools.groupId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-leave-request
+          description: "Submit a new leave or absence request for a member"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "unum-hr-connect.submit-leave-request"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-leave-request
+          description: "Get details and status of a leave request"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.get-leave-request"
+          with:
+            requestId: "tools.requestId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-eoi-submissions
+          description: "List evidence of insurability submissions for a group"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.list-eoi-submissions"
+          with:
+            groupId: "tools.groupId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-eoi-submission
+          description: "Submit a new evidence of insurability application"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "unum-hr-connect.submit-eoi"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-eoi-submission
+          description: "Get status and decision for an EOI submission"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.get-eoi-submission"
+          with:
+            submissionId: "tools.submissionId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-billing-invoices
+          description: "List premium billing invoices for an employer group"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.list-billing-invoices"
+          with:
+            groupId: "tools.groupId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-billing-invoice
+          description: "Get premium billing invoice details"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "unum-hr-connect.get-billing-invoice"
+          with:
+            invoiceId: "tools.invoiceId"
+          outputParameters:
+            - type: object
+              mapping: "$."
