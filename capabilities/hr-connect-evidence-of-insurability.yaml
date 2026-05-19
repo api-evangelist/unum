@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Unum HR Connect API — Evidence of Insurability
+  description: 'Unum HR Connect API — Evidence of Insurability. 3 operations. Lead operation: List EOI Submissions. Self-contained
+    Naftiko capability covering one Unum business surface.'
+  tags:
+  - Unum
+  - Evidence of Insurability
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    UNUM_API_KEY: UNUM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hr-connect-evidence-of-insurability
+    baseUri: https://api.unum.com/v1
+    description: Unum HR Connect API — Evidence of Insurability business capability. Self-contained, no shared references.
+    resources:
+    - name: eoi-submissions
+      path: /eoi/submissions
+      operations:
+      - name: listeoisubmissions
+        method: GET
+        description: List EOI Submissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: query
+          type: string
+          required: true
+        - name: status
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: limit
+          in: query
+          type: integer
+      - name: submiteoi
+        method: POST
+        description: Submit EOI
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: eoi-submissions-submissionId
+      path: /eoi/submissions/{submissionId}
+      operations:
+      - name: geteoisubmission
+        method: GET
+        description: Get EOI Submission
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: submissionId
+          in: path
+          type: string
+          description: EOI submission identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.UNUM_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: hr-connect-evidence-of-insurability-rest
+    port: 8080
+    description: REST adapter for Unum HR Connect API — Evidence of Insurability. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/eoi/submissions
+      name: eoi-submissions
+      description: REST surface for eoi-submissions.
+      operations:
+      - method: GET
+        name: listeoisubmissions
+        description: List EOI Submissions
+        call: hr-connect-evidence-of-insurability.listeoisubmissions
+        with:
+          groupId: rest.groupId
+          status: rest.status
+          page: rest.page
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: submiteoi
+        description: Submit EOI
+        call: hr-connect-evidence-of-insurability.submiteoi
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/eoi/submissions/{submissionid}
+      name: eoi-submissions-submissionid
+      description: REST surface for eoi-submissions-submissionId.
+      operations:
+      - method: GET
+        name: geteoisubmission
+        description: Get EOI Submission
+        call: hr-connect-evidence-of-insurability.geteoisubmission
+        with:
+          submissionId: rest.submissionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hr-connect-evidence-of-insurability-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Unum HR Connect API — Evidence of Insurability. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-eoi-submissions
+      description: List EOI Submissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hr-connect-evidence-of-insurability.listeoisubmissions
+      with:
+        groupId: tools.groupId
+        status: tools.status
+        page: tools.page
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: submit-eoi
+      description: Submit EOI
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hr-connect-evidence-of-insurability.submiteoi
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-eoi-submission
+      description: Get EOI Submission
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hr-connect-evidence-of-insurability.geteoisubmission
+      with:
+        submissionId: tools.submissionId
+      outputParameters:
+      - type: object
+        mapping: $.
