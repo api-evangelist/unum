@@ -1,0 +1,516 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unum HR Connect API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.unum.com/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unum.com/v1/oauth/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Obtain an OAuth 2.0 access token using client credentials for API authorization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Eligibility",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Eligible Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/eligibility/members",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Employer group identifier"
+              },
+              {
+                "name": "effectiveDate",
+                "value": "",
+                "type": "query",
+                "description": "Effective date for eligibility check (YYYY-MM-DD)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of eligible members for a given employer group."
+        },
+        {
+          "info": {
+            "name": "Submit Member Eligibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unum.com/v1/eligibility/members",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit or update member eligibility information for a group."
+        },
+        {
+          "info": {
+            "name": "Get Member Eligibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/eligibility/members/:memberId",
+            "params": [
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "path",
+                "description": "Unique member identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve eligibility details for a specific member."
+        },
+        {
+          "info": {
+            "name": "Update Member Eligibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.unum.com/v1/eligibility/members/:memberId",
+            "params": [
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "path",
+                "description": "Unique member identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update eligibility information for an existing member."
+        },
+        {
+          "info": {
+            "name": "Terminate Member Eligibility",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.unum.com/v1/eligibility/members/:memberId",
+            "params": [
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "path",
+                "description": "Unique member identifier"
+              },
+              {
+                "name": "terminationDate",
+                "value": "",
+                "type": "query",
+                "description": "Effective termination date"
+              },
+              {
+                "name": "terminationReason",
+                "value": "",
+                "type": "query",
+                "description": "Reason for termination"
+              }
+            ]
+          },
+          "docs": "Terminate eligibility for a member (life event, termination, etc.)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Enrollment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Enrollment Elections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/enrollment/elections",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Employer group identifier"
+              },
+              {
+                "name": "planYear",
+                "value": "",
+                "type": "query",
+                "description": "Plan year (e.g., 2026)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of benefit enrollment elections for a group."
+        },
+        {
+          "info": {
+            "name": "Submit Enrollment Election",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unum.com/v1/enrollment/elections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new benefit enrollment election for a member."
+        },
+        {
+          "info": {
+            "name": "Get Enrollment Election",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/enrollment/elections/:electionId",
+            "params": [
+              {
+                "name": "electionId",
+                "value": "",
+                "type": "path",
+                "description": "Enrollment election identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific enrollment election."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Leave Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Leave Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/leave/requests",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Employer group identifier"
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific member"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by leave request status"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of leave and absence requests."
+        },
+        {
+          "info": {
+            "name": "Submit Leave Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unum.com/v1/leave/requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new leave or absence request for a member."
+        },
+        {
+          "info": {
+            "name": "Get Leave Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/leave/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Leave request identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific leave or absence request."
+        },
+        {
+          "info": {
+            "name": "Update Leave Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.unum.com/v1/leave/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Leave request identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing leave request (e.g., extend dates, add documentation)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Evidence of Insurability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List EOI Submissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/eoi/submissions",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of evidence of insurability submissions."
+        },
+        {
+          "info": {
+            "name": "Submit EOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unum.com/v1/eoi/submissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new evidence of insurability application."
+        },
+        {
+          "info": {
+            "name": "Get EOI Submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/eoi/submissions/:submissionId",
+            "params": [
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path",
+                "description": "EOI submission identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and details of a specific EOI submission."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Billing Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/billing/invoices",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Employer group identifier"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices from this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices up to this date"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve premium billing invoices for an employer group."
+        },
+        {
+          "info": {
+            "name": "Get Billing Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/billing/invoices/:invoiceId",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path",
+                "description": "Invoice identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific premium billing invoice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

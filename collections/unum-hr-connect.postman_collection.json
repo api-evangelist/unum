@@ -1,0 +1,3996 @@
+{
+  "item": [
+    {
+      "id": "5ea5f5dc-1030-44d5-9070-9cfcc24d5923",
+      "name": "Eligibility",
+      "description": {
+        "content": "Member eligibility management and verification",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d206f3f5-8e17-4810-b8dc-46ad25615378",
+          "name": "List Eligible Members",
+          "request": {
+            "name": "List Eligible Members",
+            "description": {
+              "content": "Retrieve a list of eligible members for a given employer group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) Employer group identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "effectiveDate",
+                  "value": "<date>",
+                  "description": "Effective date for eligibility check (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Number of records per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4159c50b-463d-4920-86e7-696c37e35bf1",
+              "name": "List of eligible members",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "effectiveDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"dateOfBirth\": \"2014-03-12\",\n      \"employeeId\": \"string\",\n      \"hireDate\": \"1986-09-27\",\n      \"employmentStatus\": \"active\",\n      \"coverages\": [\n        {\n          \"productType\": \"life\",\n          \"planCode\": \"string\",\n          \"benefitAmount\": 7175.601344162238,\n          \"effectiveDate\": \"2023-03-06\",\n          \"terminationDate\": \"1974-11-12\",\n          \"status\": \"active\"\n        },\n        {\n          \"productType\": \"accident\",\n          \"planCode\": \"string\",\n          \"benefitAmount\": 2537.5276186231886,\n          \"effectiveDate\": \"1989-08-21\",\n          \"terminationDate\": \"2011-08-03\",\n          \"status\": \"active\"\n        }\n      ],\n      \"effectiveDate\": \"1985-07-16\",\n      \"terminationDate\": \"1968-02-25\",\n      \"createdAt\": \"2017-12-23T16:25:50.697Z\",\n      \"updatedAt\": \"2023-04-18T18:33:13.028Z\"\n    },\n    {\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"dateOfBirth\": \"1997-06-19\",\n      \"employeeId\": \"string\",\n      \"hireDate\": \"1988-10-08\",\n      \"employmentStatus\": \"terminated\",\n      \"coverages\": [\n        {\n          \"productType\": \"disability\",\n          \"planCode\": \"string\",\n          \"benefitAmount\": 1070.3147173703965,\n          \"effectiveDate\": \"1959-05-21\",\n          \"terminationDate\": \"2025-08-09\",\n          \"status\": \"pending\"\n        },\n        {\n          \"productType\": \"critical-illness\",\n          \"planCode\": \"string\",\n          \"benefitAmount\": 9792.536624803695,\n          \"effectiveDate\": \"2002-10-27\",\n          \"terminationDate\": \"2012-01-04\",\n          \"status\": \"active\"\n        }\n      ],\n      \"effectiveDate\": \"2013-10-29\",\n      \"terminationDate\": \"1982-09-05\",\n      \"createdAt\": \"1993-03-05T11:55:01.527Z\",\n      \"updatedAt\": \"2020-02-02T13:51:03.180Z\"\n    }\n  ],\n  \"total\": 6786,\n  \"page\": 7979,\n  \"limit\": 7169\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f49be764-e469-4209-9060-0d97d108b6d1",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "effectiveDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "007ef3ad-8b9c-4292-a7a7-e45e9b39875f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "effectiveDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4bfe641-8b3f-46a2-bef1-2a1e96cce566",
+          "name": "Submit Member Eligibility",
+          "request": {
+            "name": "Submit Member Eligibility",
+            "description": {
+              "content": "Submit or update member eligibility information for a group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "914bfc19-bf0f-4d60-9277-eaf1c5314e35",
+              "name": "Member eligibility created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"dateOfBirth\": \"1950-08-29\",\n  \"employeeId\": \"string\",\n  \"hireDate\": \"2015-10-06\",\n  \"employmentStatus\": \"on-leave\",\n  \"coverages\": [\n    {\n      \"productType\": \"dental\",\n      \"planCode\": \"string\",\n      \"benefitAmount\": 7477.483484725432,\n      \"effectiveDate\": \"2007-02-10\",\n      \"terminationDate\": \"1982-06-10\",\n      \"status\": \"pending\"\n    },\n    {\n      \"productType\": \"dental\",\n      \"planCode\": \"string\",\n      \"benefitAmount\": 2379.7411196742414,\n      \"effectiveDate\": \"1972-01-30\",\n      \"terminationDate\": \"1966-10-14\",\n      \"status\": \"terminated\"\n    }\n  ],\n  \"effectiveDate\": \"1951-06-02\",\n  \"terminationDate\": \"2011-10-04\",\n  \"createdAt\": \"1955-10-09T13:37:20.059Z\",\n  \"updatedAt\": \"1992-10-07T10:47:57.809Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f496a8de-4a89-432f-9db3-55201349d8a1",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3fd76ed-5170-4e04-b61b-ae2311c619ff",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f991b08e-103e-403c-9a11-da70d8d55e64",
+          "name": "Get Member Eligibility",
+          "request": {
+            "name": "Get Member Eligibility",
+            "description": {
+              "content": "Retrieve eligibility details for a specific member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility",
+                "members",
+                ":memberId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberId",
+                  "description": "(Required) Unique member identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ee5d7b4-b36d-411b-a4e1-805ead041b05",
+              "name": "Member eligibility details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"dateOfBirth\": \"1950-08-29\",\n  \"employeeId\": \"string\",\n  \"hireDate\": \"2015-10-06\",\n  \"employmentStatus\": \"on-leave\",\n  \"coverages\": [\n    {\n      \"productType\": \"dental\",\n      \"planCode\": \"string\",\n      \"benefitAmount\": 7477.483484725432,\n      \"effectiveDate\": \"2007-02-10\",\n      \"terminationDate\": \"1982-06-10\",\n      \"status\": \"pending\"\n    },\n    {\n      \"productType\": \"dental\",\n      \"planCode\": \"string\",\n      \"benefitAmount\": 2379.7411196742414,\n      \"effectiveDate\": \"1972-01-30\",\n      \"terminationDate\": \"1966-10-14\",\n      \"status\": \"terminated\"\n    }\n  ],\n  \"effectiveDate\": \"1951-06-02\",\n  \"terminationDate\": \"2011-10-04\",\n  \"createdAt\": \"1955-10-09T13:37:20.059Z\",\n  \"updatedAt\": \"1992-10-07T10:47:57.809Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17fc80b9-ef05-423b-a276-cd00d1da78a9",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcb2cf89-ed89-41fa-b4ab-ee6346db539f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f057d50c-8ca7-498d-8a5f-b900db21738a",
+          "name": "Update Member Eligibility",
+          "request": {
+            "name": "Update Member Eligibility",
+            "description": {
+              "content": "Update eligibility information for an existing member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility",
+                "members",
+                ":memberId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberId",
+                  "description": "(Required) Unique member identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14d24c73-9e51-4884-8c44-bb0b59b5f597",
+              "name": "Member eligibility updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"dateOfBirth\": \"1950-08-29\",\n  \"employeeId\": \"string\",\n  \"hireDate\": \"2015-10-06\",\n  \"employmentStatus\": \"on-leave\",\n  \"coverages\": [\n    {\n      \"productType\": \"dental\",\n      \"planCode\": \"string\",\n      \"benefitAmount\": 7477.483484725432,\n      \"effectiveDate\": \"2007-02-10\",\n      \"terminationDate\": \"1982-06-10\",\n      \"status\": \"pending\"\n    },\n    {\n      \"productType\": \"dental\",\n      \"planCode\": \"string\",\n      \"benefitAmount\": 2379.7411196742414,\n      \"effectiveDate\": \"1972-01-30\",\n      \"terminationDate\": \"1966-10-14\",\n      \"status\": \"terminated\"\n    }\n  ],\n  \"effectiveDate\": \"1951-06-02\",\n  \"terminationDate\": \"2011-10-04\",\n  \"createdAt\": \"1955-10-09T13:37:20.059Z\",\n  \"updatedAt\": \"1992-10-07T10:47:57.809Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4c57dca-6533-4c78-baf3-951be92b07d1",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47935f45-9ed0-4b78-a588-180cdcc9fe7b",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0ef1729-bcb5-4c55-a984-5fe815a0e977",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"groupId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"dateOfBirth\": \"<date>\",\n  \"employeeId\": \"<string>\",\n  \"hireDate\": \"<date>\",\n  \"employmentStatus\": \"<string>\",\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c9887b4-76ae-43a5-a1ed-062ba59f97e4",
+          "name": "Terminate Member Eligibility",
+          "request": {
+            "name": "Terminate Member Eligibility",
+            "description": {
+              "content": "Terminate eligibility for a member (life event, termination, etc.).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility",
+                "members",
+                ":memberId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "terminationDate",
+                  "value": "<date>",
+                  "description": "(Required) Effective termination date"
+                },
+                {
+                  "disabled": false,
+                  "key": "terminationReason",
+                  "value": "<string>",
+                  "description": "Reason for termination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberId",
+                  "description": "(Required) Unique member identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15fd5e64-7df8-4269-9fd4-828a1623e63f",
+              "name": "Member eligibility terminated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "terminationDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "terminationReason",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d873221-0e4e-43a6-ba63-39f0709fb2d8",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "terminationDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "terminationReason",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16b51958-5dfe-4e14-92d2-ff7ae5b6434a",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility",
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "terminationDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "terminationReason",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) Unique member identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "da2978ed-2a7f-473b-8e71-930c66dd4d0c",
+      "name": "Enrollment",
+      "description": {
+        "content": "Benefits enrollment and lifecycle management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "552d4c04-61a2-41f0-bfd7-cf0cd0db705f",
+          "name": "List Enrollment Elections",
+          "request": {
+            "name": "List Enrollment Elections",
+            "description": {
+              "content": "Retrieve a list of benefit enrollment elections for a group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrollment",
+                "elections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) Employer group identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "planYear",
+                  "value": "<integer>",
+                  "description": "Plan year (e.g., 2026)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c899b149-bb59-422a-a356-d6d1f1cd6428",
+              "name": "List of enrollment elections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"electionId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"planYear\": 1292,\n      \"elections\": [\n        {\n          \"productType\": \"critical-illness\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"family\",\n          \"benefitAmount\": 9918.220656940824,\n          \"waived\": false\n        },\n        {\n          \"productType\": \"vision\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"employee-spouse\",\n          \"benefitAmount\": 1738.6717949969266,\n          \"waived\": false\n        }\n      ],\n      \"status\": \"confirmed\",\n      \"submittedAt\": \"1952-11-24T20:23:05.154Z\",\n      \"effectiveDate\": \"1987-09-28\"\n    },\n    {\n      \"electionId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"planYear\": 6019,\n      \"elections\": [\n        {\n          \"productType\": \"dental\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"family\",\n          \"benefitAmount\": 2835.184914772151,\n          \"waived\": false\n        },\n        {\n          \"productType\": \"critical-illness\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"employee-only\",\n          \"benefitAmount\": 323.82302708051424,\n          \"waived\": false\n        }\n      ],\n      \"status\": \"cancelled\",\n      \"submittedAt\": \"1957-12-24T18:33:05.540Z\",\n      \"effectiveDate\": \"2012-08-14\"\n    }\n  ],\n  \"total\": 4488,\n  \"page\": 9104,\n  \"limit\": 3946\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7adb9e1-1b48-4f7c-9a24-f69fd7af93ba",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ba21708-1d38-402c-86a2-e6b07f801fc3",
+          "name": "Submit Enrollment Election",
+          "request": {
+            "name": "Submit Enrollment Election",
+            "description": {
+              "content": "Submit a new benefit enrollment election for a member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrollment",
+                "elections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "914aea04-49a5-4164-aa72-d1f5a54da342",
+              "name": "Enrollment election submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"electionId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"planYear\": 2611,\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"status\": \"cancelled\",\n  \"submittedAt\": \"1967-12-02T20:40:47.269Z\",\n  \"effectiveDate\": \"2024-09-24\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d0451ee-0b0e-484d-818c-7781247205ea",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00de894b-9030-4ba7-9fe7-a75237785fd5",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41368088-c3d8-45ec-a152-792e0cefcf67",
+          "name": "Get Enrollment Election",
+          "request": {
+            "name": "Get Enrollment Election",
+            "description": {
+              "content": "Retrieve details of a specific enrollment election.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrollment",
+                "elections",
+                ":electionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "electionId",
+                  "description": "(Required) Enrollment election identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c491308-c397-4cb7-8e80-8491251fc578",
+              "name": "Enrollment election details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections",
+                    ":electionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "electionId",
+                      "description": "(Required) Enrollment election identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"electionId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"planYear\": 2611,\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"status\": \"cancelled\",\n  \"submittedAt\": \"1967-12-02T20:40:47.269Z\",\n  \"effectiveDate\": \"2024-09-24\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a57ed118-625c-4834-9d4d-282abfd3eab7",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections",
+                    ":electionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "electionId",
+                      "description": "(Required) Enrollment election identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2591f4f-8891-4f66-9400-427ee71e876a",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections",
+                    ":electionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "electionId",
+                      "description": "(Required) Enrollment election identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fe4619e2-f7bf-4b13-a4de-1b209e43704c",
+      "name": "Leave Management",
+      "description": {
+        "content": "Leave and absence request management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb43fc9b-a21a-4e3b-90a0-da9355c3774a",
+          "name": "List Leave Requests",
+          "request": {
+            "name": "List Leave Requests",
+            "description": {
+              "content": "Retrieve a list of leave and absence requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) Employer group identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "memberId",
+                  "value": "<string>",
+                  "description": "Filter by specific member"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by leave request status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adf98c15-629f-4e6f-82e4-3238aa7ebd88",
+              "name": "List of leave requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"requestId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"leaveType\": \"short-term-disability\",\n      \"reason\": \"string\",\n      \"startDate\": \"1956-02-05\",\n      \"endDate\": \"2000-09-24\",\n      \"status\": \"approved\",\n      \"continuousLeave\": true,\n      \"intermittentLeave\": true,\n      \"returnToWorkDate\": \"1946-08-24\",\n      \"createdAt\": \"1981-03-26T14:33:56.579Z\",\n      \"updatedAt\": \"1973-09-04T18:53:12.908Z\"\n    },\n    {\n      \"requestId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"leaveType\": \"short-term-disability\",\n      \"reason\": \"string\",\n      \"startDate\": \"1967-06-29\",\n      \"endDate\": \"2014-10-13\",\n      \"status\": \"closed\",\n      \"continuousLeave\": true,\n      \"intermittentLeave\": true,\n      \"returnToWorkDate\": \"1963-12-24\",\n      \"createdAt\": \"1977-05-26T15:26:03.183Z\",\n      \"updatedAt\": \"2007-12-07T20:02:53.753Z\"\n    }\n  ],\n  \"total\": 6064,\n  \"page\": 2078,\n  \"limit\": 7689\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa85f48f-629c-4823-94f6-f37227ac10ae",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebd0e01c-644f-4ba7-851f-a4bba77c15d1",
+          "name": "Submit Leave Request",
+          "request": {
+            "name": "Submit Leave Request",
+            "description": {
+              "content": "Submit a new leave or absence request for a member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0a355e08-5197-405f-9e39-39e5f2e001dd",
+              "name": "Leave request submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"leaveType\": \"military\",\n  \"reason\": \"string\",\n  \"startDate\": \"2005-12-11\",\n  \"endDate\": \"2003-09-27\",\n  \"status\": \"pending\",\n  \"continuousLeave\": false,\n  \"intermittentLeave\": true,\n  \"returnToWorkDate\": \"2010-07-18\",\n  \"createdAt\": \"1964-01-09T14:48:08.530Z\",\n  \"updatedAt\": \"1972-01-10T02:04:05.434Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9716e0f4-9db9-4094-ac38-09685b146738",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01f3a717-ac54-4474-825f-b4a188202495",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ace25b14-26be-4000-abb0-729df8fbc4cf",
+          "name": "Get Leave Request",
+          "request": {
+            "name": "Get Leave Request",
+            "description": {
+              "content": "Retrieve details of a specific leave or absence request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) Leave request identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1403e6e-6dcd-42d1-b996-5ebadb9d8f08",
+              "name": "Leave request details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"leaveType\": \"military\",\n  \"reason\": \"string\",\n  \"startDate\": \"2005-12-11\",\n  \"endDate\": \"2003-09-27\",\n  \"status\": \"pending\",\n  \"continuousLeave\": false,\n  \"intermittentLeave\": true,\n  \"returnToWorkDate\": \"2010-07-18\",\n  \"createdAt\": \"1964-01-09T14:48:08.530Z\",\n  \"updatedAt\": \"1972-01-10T02:04:05.434Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc9cece1-da9a-41cd-9295-67d30341f515",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9b4b3ab-602f-4a13-b9b5-d28fd5aa38f1",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "736d0022-7232-4b29-9efa-1a8f648cd416",
+          "name": "Update Leave Request",
+          "request": {
+            "name": "Update Leave Request",
+            "description": {
+              "content": "Update an existing leave request (e.g., extend dates, add documentation).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) Leave request identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8014ec7-23b4-4ded-9a92-16be47b07c85",
+              "name": "Leave request updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"leaveType\": \"military\",\n  \"reason\": \"string\",\n  \"startDate\": \"2005-12-11\",\n  \"endDate\": \"2003-09-27\",\n  \"status\": \"pending\",\n  \"continuousLeave\": false,\n  \"intermittentLeave\": true,\n  \"returnToWorkDate\": \"2010-07-18\",\n  \"createdAt\": \"1964-01-09T14:48:08.530Z\",\n  \"updatedAt\": \"1972-01-10T02:04:05.434Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a19a98d7-45bd-49c1-81d8-0cee2c7a378b",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14515947-06b9-43a0-ae94-1f72bb860609",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abbd153d-0595-4c55-acde-3d3b15884e7c",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9a65713e-0354-49f8-be6a-ec986dccdbe3",
+      "name": "Evidence of Insurability",
+      "description": {
+        "content": "EOI submission and status tracking",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6469cb82-d6a5-4c1e-85a0-f5026c30b8f3",
+          "name": "List EOI Submissions",
+          "request": {
+            "name": "List EOI Submissions",
+            "description": {
+              "content": "Retrieve a list of evidence of insurability submissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eoi",
+                "submissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d7cba1d-bb95-4956-a4fb-c35ec96c86da",
+              "name": "List of EOI submissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"submissionId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"productType\": \"disability\",\n      \"requestedBenefitAmount\": 5431.824636718185,\n      \"status\": \"denied\",\n      \"decision\": \"string\",\n      \"decisionDate\": \"2024-07-27\",\n      \"submittedAt\": \"2009-06-01T21:59:30.585Z\",\n      \"updatedAt\": \"1987-05-08T18:46:12.146Z\"\n    },\n    {\n      \"submissionId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"productType\": \"critical-illness\",\n      \"requestedBenefitAmount\": 3323.9857205856715,\n      \"status\": \"denied\",\n      \"decision\": \"string\",\n      \"decisionDate\": \"1995-05-18\",\n      \"submittedAt\": \"2021-08-16T20:43:24.690Z\",\n      \"updatedAt\": \"1975-07-06T02:07:05.380Z\"\n    }\n  ],\n  \"total\": 163,\n  \"page\": 5922,\n  \"limit\": 1674\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd8b3a76-0c1e-46e0-b248-8613f3cd6084",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17c7e4a5-bc2f-46da-92e9-072d27dd1751",
+          "name": "Submit EOI",
+          "request": {
+            "name": "Submit EOI",
+            "description": {
+              "content": "Submit a new evidence of insurability application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eoi",
+                "submissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"productType\": \"<string>\",\n  \"requestedBenefitAmount\": \"<double>\",\n  \"healthAnswers\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b06db157-f59b-47f6-aec0-b7818d171e5f",
+              "name": "EOI submission created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"productType\": \"<string>\",\n  \"requestedBenefitAmount\": \"<double>\",\n  \"healthAnswers\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submissionId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"productType\": \"critical-illness\",\n  \"requestedBenefitAmount\": 2129.6988078364775,\n  \"status\": \"pending\",\n  \"decision\": \"string\",\n  \"decisionDate\": \"1983-12-12\",\n  \"submittedAt\": \"1992-05-20T14:09:15.961Z\",\n  \"updatedAt\": \"1956-06-01T19:12:57.280Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d60ebdf0-4abe-4b2d-a279-f3efca33da20",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"productType\": \"<string>\",\n  \"requestedBenefitAmount\": \"<double>\",\n  \"healthAnswers\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6db79c69-caeb-4a6a-8e60-3f05e486b057",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"productType\": \"<string>\",\n  \"requestedBenefitAmount\": \"<double>\",\n  \"healthAnswers\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d21ba78c-0fd6-4cff-8490-75cd9ffdfce1",
+          "name": "Get EOI Submission",
+          "request": {
+            "name": "Get EOI Submission",
+            "description": {
+              "content": "Retrieve the status and details of a specific EOI submission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eoi",
+                "submissions",
+                ":submissionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "submissionId",
+                  "description": "(Required) EOI submission identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0607fa36-c1a8-4ef0-9778-6a55c6373681",
+              "name": "EOI submission details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions",
+                    ":submissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) EOI submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submissionId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"productType\": \"critical-illness\",\n  \"requestedBenefitAmount\": 2129.6988078364775,\n  \"status\": \"pending\",\n  \"decision\": \"string\",\n  \"decisionDate\": \"1983-12-12\",\n  \"submittedAt\": \"1992-05-20T14:09:15.961Z\",\n  \"updatedAt\": \"1956-06-01T19:12:57.280Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "815d4a65-1443-48a8-a4bd-9ba9132a35cf",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions",
+                    ":submissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) EOI submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18876164-5f70-48c2-aa13-9fbcdac0b45b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eoi",
+                    "submissions",
+                    ":submissionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "submissionId",
+                      "description": "(Required) EOI submission identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e46debb2-a8a8-41fc-a676-cbcf95adb352",
+      "name": "Billing",
+      "description": {
+        "content": "Premium billing and payment management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44380f54-7354-4a6d-91cb-56bc50dab73b",
+          "name": "List Billing Invoices",
+          "request": {
+            "name": "List Billing Invoices",
+            "description": {
+              "content": "Retrieve premium billing invoices for an employer group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "billing",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) Employer group identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Filter invoices from this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Filter invoices up to this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e2636b8-64c2-4343-8fa1-cbd29ca8d3f3",
+              "name": "List of billing invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"invoiceId\": \"string\",\n      \"groupId\": \"string\",\n      \"billingPeriodStart\": \"1985-02-26\",\n      \"billingPeriodEnd\": \"1994-10-08\",\n      \"totalPremium\": 2397.1310745743444,\n      \"currency\": \"USD\",\n      \"status\": \"void\",\n      \"dueDate\": \"1991-09-08\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 5796.855197308743,\n          \"coverageLevel\": \"string\"\n        },\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 2143.165774147525,\n          \"coverageLevel\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1952-01-23T08:21:10.121Z\"\n    },\n    {\n      \"invoiceId\": \"string\",\n      \"groupId\": \"string\",\n      \"billingPeriodStart\": \"1957-01-14\",\n      \"billingPeriodEnd\": \"2011-08-03\",\n      \"totalPremium\": 4374.119105374665,\n      \"currency\": \"USD\",\n      \"status\": \"pending\",\n      \"dueDate\": \"2010-09-08\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 2880.647327438843,\n          \"coverageLevel\": \"string\"\n        },\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 3315.3778506916055,\n          \"coverageLevel\": \"string\"\n        }\n      ],\n      \"createdAt\": \"2003-05-16T18:32:29.333Z\"\n    }\n  ],\n  \"total\": 7428,\n  \"page\": 272,\n  \"limit\": 4327\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5bcb17a-acca-4879-aad4-16bc5ce340ec",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75420d6b-c65f-4492-9348-05a67231e978",
+          "name": "Get Billing Invoice",
+          "request": {
+            "name": "Get Billing Invoice",
+            "description": {
+              "content": "Retrieve details of a specific premium billing invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "billing",
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4bd849a-8fc7-41ce-b190-ef08daff8321",
+              "name": "Billing invoice details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceId\": \"string\",\n  \"groupId\": \"string\",\n  \"billingPeriodStart\": \"2018-11-03\",\n  \"billingPeriodEnd\": \"1981-04-26\",\n  \"totalPremium\": 7385.05916568948,\n  \"currency\": \"USD\",\n  \"status\": \"overdue\",\n  \"dueDate\": \"1965-07-15\",\n  \"lineItems\": [\n    {\n      \"lineItemId\": \"string\",\n      \"memberId\": \"string\",\n      \"productType\": \"string\",\n      \"planCode\": \"string\",\n      \"premium\": 7275.982448794589,\n      \"coverageLevel\": \"string\"\n    },\n    {\n      \"lineItemId\": \"string\",\n      \"memberId\": \"string\",\n      \"productType\": \"string\",\n      \"planCode\": \"string\",\n      \"premium\": 1495.9605235123518,\n      \"coverageLevel\": \"string\"\n    }\n  ],\n  \"createdAt\": \"1974-05-02T09:01:55.497Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2450c01e-9e18-426f-9b2f-6863dc2d557a",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25b28a45-a86b-44ed-8fa9-f685103b44fc",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "78a91c5d-0508-49fe-be48-88349b0241dd",
+      "name": "Authentication",
+      "description": {
+        "content": "OAuth 2.0 token management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4214c8d-a2c5-4c3e-be4c-cfaba82ea89c",
+          "name": "Get Access Token",
+          "request": {
+            "name": "Get Access Token",
+            "description": {
+              "content": "Obtain an OAuth 2.0 access token using client credentials for API authorization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) OAuth grant type"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Client application identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Client application secret"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d6719762-9ec4-48d2-aaed-6fbd01c20a6d",
+              "name": "Access token response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client application identifier",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client application secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 3600,\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f6b4970-4bf2-4188-92c9-b03277dda74e",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) OAuth grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client application identifier",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Client application secret",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unum.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "eligibility:read eligibility:write enrollment:read enrollment:write leave:read leave:write eoi:read eoi:write billing:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.unum.com/v1/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b4c1010-de3f-46dd-86e9-190a1267942b",
+    "name": "Unum HR Connect API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.\n\nContact Support:\n Name: Unum Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

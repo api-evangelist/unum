@@ -2,6 +2,13 @@
   "repo": "unum",
   "feeds": [
     {
+      "source": "https://www.unum.com/employers/hr-trends",
+      "feed_url": "https://www.unum.com/employers/hr-trends",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://developer.unum.com/s/",
       "feed_url": "https://developer.unum.com/s/",
       "title": "",
@@ -9,6 +16,6 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
+  "fetched": "2026-06-14T20:42:17Z",
   "post_count": 0
 }

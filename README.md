@@ -1,84 +1,99 @@
-# Unum
+# Unum (unum)
 
-Unum Group is a leading Fortune 500 provider of financial protection benefits including disability insurance, life insurance, dental insurance, vision insurance, and critical illness coverage. Unum's developer platform offers APIs for HR system integration, eligibility management, leave and absence management, enrollment, and evidence of insurability processing.
+Unum Group is a leading provider of financial protection benefits including disability insurance, life insurance, dental insurance, vision insurance, and critical illness coverage. Unum's developer platform offers APIs for HR system integration, eligibility management, leave and absence management, enrollment, and evidence of insurability processing.
 
-**Developer Portal:** https://developer.unum.com/s/
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/unum/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/unum/refs/heads/main/apis.yml)
 
-**Website:** https://www.unum.com
+## Scope
+
+- **Type:** Index
+
+## Tags
+
+- Insurance
+- Benefits Administration
+- HR Integration
+- Disability Insurance
+- Life Insurance
+
+## Timestamps
+
+- **Created:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
-| API | Description |
-|---|---|
-| [Unum HR Connect API](openapi/unum-hr-connect-openapi.yml) | Real-time connection between Unum benefits and HR platforms (Workday, ADP, UKG) covering eligibility, enrollment, leave, EOI, and billing |
-| Unum Benefits Enrollment API | Real-time enrollment elections and life event processing |
-| Unum Leave and Absence Management API | FMLA, state leave, and STD request intake and status tracking |
+### Unum HR Connect API
 
-## OpenAPI Specifications
+The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI), premium billing calculations, leave and absence management, and enrollment data synchronization, eliminating manual EDI batch file processing.
 
-| Spec | Description |
-|---|---|
-| [unum-hr-connect-openapi.yml](openapi/unum-hr-connect-openapi.yml) | Unum HR Connect API covering eligibility, enrollment, leave, EOI, and billing |
+- **Human URL:** [https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems](https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems)
+- **Base URL:** `https://api.unum.com`
 
-## Spectral Rules
+#### Tags
 
-| Ruleset | Description |
-|---|---|
-| [unum-rules.yml](rules/unum-rules.yml) | Spectral ruleset enforcing Unum API naming conventions, pagination, security, and response envelope patterns |
+- HR Integration
+- Benefits Administration
+- Eligibility
+- Enrollment
+- Leave Management
 
-## Naftiko Capabilities
+#### Properties
 
-### Shared Definitions
+- [Documentation](https://developer.unum.com/s/)
+- [Website](https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/unum/refs/heads/main/openapi/unum-hr-connect-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/unum-hr-connect.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/unum-hr-connect.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-| File | APIs Covered |
-|---|---|
-| [shared/hr-connect.yaml](capabilities/shared/hr-connect.yaml) | Unum HR Connect API (eligibility, enrollment, leave, EOI, billing) |
+### Unum Benefits Enrollment API
 
-### Workflow Capabilities
+The Unum Benefits Enrollment API allows benefits administration platforms and HR systems to submit, update, and manage employee benefit enrollments in real time. The API enables seamless data synchronization between employer HR systems and Unum's benefits administration, supporting life events, open enrollment, and real-time quoting for voluntary benefits.
 
-| Workflow | Description | Tools |
-|---|---|---|
-| [benefits-administration.yaml](capabilities/benefits-administration.yaml) | End-to-end HR benefits administration — eligibility, enrollment, leave, EOI, and billing | 15 tools |
+- **Human URL:** [https://developer.unum.com/s/](https://developer.unum.com/s/)
+- **Base URL:** `https://api.unum.com`
 
-## JSON Schemas
+#### Tags
 
-| Schema | Description |
-|---|---|
-| [unum-member-schema.json](json-schema/unum-member-schema.json) | Member eligibility and coverage record |
-| [unum-leave-request-schema.json](json-schema/unum-leave-request-schema.json) | Leave and absence request |
+- Benefits Enrollment
+- Insurance
+- Voluntary Benefits
 
-## JSON Structure
+#### Properties
 
-| Structure | Description |
-|---|---|
-| [unum-member-structure.json](json-structure/unum-member-structure.json) | Field-level documentation for the Member resource |
+- [Documentation](https://developer.unum.com/s/)
+- [Website](https://www.unum.com/employers/solutions/myunum)
+- [Postman Collection](collections/unum-hr-connect.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/unum-hr-connect.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## JSON-LD
+### Unum Leave and Absence Management API
 
-| Context | Description |
-|---|---|
-| [unum-context.jsonld](json-ld/unum-context.jsonld) | Linked data context mapping Unum resources to schema.org |
+The Unum Leave and Absence Management API integrates Unum's leave solutions directly with HCM platforms, automating leave request intake, status tracking, return-to-work coordination, and FMLA/state leave eligibility determination. The API eliminates manual data entry by connecting leave workflows between employer HR systems and Unum's leave management platform.
 
-## Examples
+- **Human URL:** [https://developer.unum.com/s/](https://developer.unum.com/s/)
+- **Base URL:** `https://api.unum.com`
 
-| Example | Description |
-|---|---|
-| [unum-list-eligible-members-example.json](examples/unum-list-eligible-members-example.json) | GET /eligibility/members request and response |
-| [unum-submit-leave-request-example.json](examples/unum-submit-leave-request-example.json) | POST /leave/requests request and response |
-| [unum-submit-eoi-example.json](examples/unum-submit-eoi-example.json) | POST /eoi/submissions request and response |
+#### Tags
 
-## Vocabulary
+- Leave Management
+- FMLA
+- Absence Management
+- HR Integration
 
-| File | Description |
-|---|---|
-| [unum-vocabulary.yml](vocabulary/unum-vocabulary.yml) | Domain vocabulary for Unum benefits administration including insurance products, leave types, and HR integration concepts |
+#### Properties
 
-## Links
+- [Documentation](https://developer.unum.com/s/)
+- [Postman Collection](collections/unum-hr-connect.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/unum-hr-connect.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-- **Website:** https://www.unum.com
-- **Developer Portal:** https://developer.unum.com/s/
-- **HR Connect Integration:** https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
-- **Blog:** https://www.unum.com/employers/hr-trends
+## Common Properties
+
+- [LinkedIn](https://www.linkedin.com/company/unum)
+- [Website](https://www.unum.com)
+- [Developer  Portal](https://developer.unum.com/s/)
+- [Documentation](https://developer.unum.com/s/)
+- [Blog](https://www.unum.com/employers/hr-trends)
+- [Case  Studies](https://www.broadcom.com/case-studies/automation/unum-better-leverages-apis-to-deepen-customer-relationships-and-improve-customer-loyalty)
 
 ## Maintainers
 
