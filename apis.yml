@@ -81,7 +81,7 @@ common:
     url: https://www.linkedin.com/company/unum
   - type: Website
     url: https://www.unum.com
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.unum.com/s/
   - type: Documentation
     url: https://developer.unum.com/s/
