@@ -1,0 +1,64 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/unum-hr-connect-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/unum-hr-connect-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.unum.com/v1/oauth/token
+scopes:
+- scope: billing:read
+  description: Read billing invoices
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: eligibility:read
+  description: Read member eligibility
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: eligibility:write
+  description: Write member eligibility
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: enrollment:read
+  description: Read enrollment elections
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: enrollment:write
+  description: Write enrollment elections
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: eoi:read
+  description: Read EOI submissions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: eoi:write
+  description: Write EOI submissions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: leave:read
+  description: Read leave requests
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
+- scope: leave:write
+  description: Write leave requests
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/unum-hr-connect-openapi.yml
