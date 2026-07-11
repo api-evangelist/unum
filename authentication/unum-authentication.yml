@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/unum-hr-connect-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.unum.com/v1/oauth/token
+    scopes: 9
+  sources:
+  - openapi/unum-hr-connect-openapi.yml

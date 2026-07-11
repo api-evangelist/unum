@@ -77,6 +77,8 @@ apis:
       - type: Documentation
         url: https://developer.unum.com/s/
 common:
+  - type: DomainSecurity
+    url: security/unum-domain-security.yml
   - type: Authentication
     url: authentication/unum-authentication.yml
   - type: OAuthScopes
