@@ -1,0 +1,353 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/unum-hr-connect-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 18
+  by_action_class:
+    acting: 8
+    connected: 10
+  by_consequence:
+    write: 7
+    read: 10
+    safety-critical: 1
+  human_in_the_loop_required: 1
+operations:
+- path: /oauth/token
+  method: post
+  operationId: getAccessToken
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eligibility/members
+  method: get
+  operationId: listEligibleMembers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eligibility/members
+  method: post
+  operationId: submitMemberEligibility
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eligibility/members/{memberId}
+  method: get
+  operationId: getMemberEligibility
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eligibility/members/{memberId}
+  method: put
+  operationId: updateMemberEligibility
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eligibility/members/{memberId}
+  method: delete
+  operationId: terminateMemberEligibility
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /enrollment/elections
+  method: get
+  operationId: listEnrollmentElections
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /enrollment/elections
+  method: post
+  operationId: submitEnrollmentElection
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /enrollment/elections/{electionId}
+  method: get
+  operationId: getEnrollmentElection
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /leave/requests
+  method: get
+  operationId: listLeaveRequests
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /leave/requests
+  method: post
+  operationId: submitLeaveRequest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /leave/requests/{requestId}
+  method: get
+  operationId: getLeaveRequest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /leave/requests/{requestId}
+  method: put
+  operationId: updateLeaveRequest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eoi/submissions
+  method: get
+  operationId: listEoiSubmissions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eoi/submissions
+  method: post
+  operationId: submitEoi
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /eoi/submissions/{submissionId}
+  method: get
+  operationId: getEoiSubmission
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /billing/invoices
+  method: get
+  operationId: listBillingInvoices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
+- path: /billing/invoices/{invoiceId}
+  method: get
+  operationId: getBillingInvoice
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+    scope:
+    - billing:read
+    - eligibility:read
+    - enrollment:read
+    - eoi:read
+    - leave:read
