@@ -1,0 +1,252 @@
+openapi: 3.0.3
+info:
+  title: Unum HR Connect Authentication Enrollment API
+  description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
+  version: '1.0'
+  contact:
+    name: Unum Developer Support
+    url: https://developer.unum.com/s/
+  termsOfService: https://www.unum.com/legal
+servers:
+- url: https://api.unum.com/v1
+  description: Unum Production API
+security:
+- OAuth2:
+  - eligibility:read
+  - enrollment:read
+  - leave:read
+  - eoi:read
+  - billing:read
+tags:
+- name: Enrollment
+  description: Benefits enrollment and lifecycle management
+paths:
+  /enrollment/elections:
+    get:
+      operationId: listEnrollmentElections
+      summary: List Enrollment Elections
+      description: Retrieve a list of benefit enrollment elections for a group.
+      tags:
+      - Enrollment
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Employer group identifier
+      - name: planYear
+        in: query
+        schema:
+          type: integer
+        description: Plan year (e.g., 2026)
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of enrollment elections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentElectionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: submitEnrollmentElection
+      summary: Submit Enrollment Election
+      description: Submit a new benefit enrollment election for a member.
+      tags:
+      - Enrollment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentElectionRequest'
+      responses:
+        '201':
+          description: Enrollment election submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentElection'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /enrollment/elections/{electionId}:
+    get:
+      operationId: getEnrollmentElection
+      summary: Get Enrollment Election
+      description: Retrieve details of a specific enrollment election.
+      tags:
+      - Enrollment
+      parameters:
+      - name: electionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Enrollment election identifier
+      responses:
+        '200':
+          description: Enrollment election details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentElection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    EnrollmentElectionRequest:
+      type: object
+      required:
+      - memberId
+      - groupId
+      - planYear
+      - elections
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        planYear:
+          type: integer
+        elections:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenefitElection'
+        effectiveDate:
+          type: string
+          format: date
+    EnrollmentElectionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrollmentElection'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    BenefitElection:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum:
+          - disability
+          - life
+          - dental
+          - vision
+          - critical-illness
+          - accident
+        planCode:
+          type: string
+        coverageLevel:
+          type: string
+          enum:
+          - employee-only
+          - employee-spouse
+          - employee-children
+          - family
+        benefitAmount:
+          type: number
+          format: double
+        waived:
+          type: boolean
+          default: false
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    EnrollmentElection:
+      type: object
+      properties:
+        electionId:
+          type: string
+        memberId:
+          type: string
+        groupId:
+          type: string
+        planYear:
+          type: integer
+        elections:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenefitElection'
+        status:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - cancelled
+        submittedAt:
+          type: string
+          format: date-time
+        effectiveDate:
+          type: string
+          format: date
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.unum.com/v1/oauth/token
+          scopes:
+            eligibility:read: Read member eligibility
+            eligibility:write: Write member eligibility
+            enrollment:read: Read enrollment elections
+            enrollment:write: Write enrollment elections
+            leave:read: Read leave requests
+            leave:write: Write leave requests
+            eoi:read: Read EOI submissions
+            eoi:write: Write EOI submissions
+            billing:read: Read billing invoices

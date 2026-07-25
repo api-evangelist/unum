@@ -1,0 +1,120 @@
+openapi: 3.0.3
+info:
+  title: Unum HR Connect Authentication API
+  description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
+  version: '1.0'
+  contact:
+    name: Unum Developer Support
+    url: https://developer.unum.com/s/
+  termsOfService: https://www.unum.com/legal
+servers:
+- url: https://api.unum.com/v1
+  description: Unum Production API
+security:
+- OAuth2:
+  - eligibility:read
+  - enrollment:read
+  - leave:read
+  - eoi:read
+  - billing:read
+tags:
+- name: Authentication
+  description: OAuth 2.0 token management
+paths:
+  /oauth/token:
+    post:
+      operationId: getAccessToken
+      summary: Get Access Token
+      description: Obtain an OAuth 2.0 access token using client credentials for API authorization.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                  description: OAuth grant type
+                client_id:
+                  type: string
+                  description: Client application identifier
+                client_secret:
+                  type: string
+                  description: Client application secret
+      responses:
+        '200':
+          description: Access token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer access token
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration in seconds
+          example: 3600
+        scope:
+          type: string
+          description: Granted OAuth scopes
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.unum.com/v1/oauth/token
+          scopes:
+            eligibility:read: Read member eligibility
+            eligibility:write: Write member eligibility
+            enrollment:read: Read enrollment elections
+            enrollment:write: Write enrollment elections
+            leave:read: Read leave requests
+            leave:write: Write leave requests
+            eoi:read: Read EOI submissions
+            eoi:write: Write EOI submissions
+            billing:read: Read billing invoices

@@ -1,0 +1,207 @@
+openapi: 3.0.3
+info:
+  title: Unum HR Connect Authentication Billing API
+  description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
+  version: '1.0'
+  contact:
+    name: Unum Developer Support
+    url: https://developer.unum.com/s/
+  termsOfService: https://www.unum.com/legal
+servers:
+- url: https://api.unum.com/v1
+  description: Unum Production API
+security:
+- OAuth2:
+  - eligibility:read
+  - enrollment:read
+  - leave:read
+  - eoi:read
+  - billing:read
+tags:
+- name: Billing
+  description: Premium billing and payment management
+paths:
+  /billing/invoices:
+    get:
+      operationId: listBillingInvoices
+      summary: List Billing Invoices
+      description: Retrieve premium billing invoices for an employer group.
+      tags:
+      - Billing
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Employer group identifier
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Filter invoices from this date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Filter invoices up to this date
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of billing invoices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingInvoiceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /billing/invoices/{invoiceId}:
+    get:
+      operationId: getBillingInvoice
+      summary: Get Billing Invoice
+      description: Retrieve details of a specific premium billing invoice.
+      tags:
+      - Billing
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Invoice identifier
+      responses:
+        '200':
+          description: Billing invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingInvoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    BillingLineItem:
+      type: object
+      properties:
+        lineItemId:
+          type: string
+        memberId:
+          type: string
+        productType:
+          type: string
+        planCode:
+          type: string
+        premium:
+          type: number
+          format: double
+        coverageLevel:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    BillingInvoice:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+        groupId:
+          type: string
+        billingPeriodStart:
+          type: string
+          format: date
+        billingPeriodEnd:
+          type: string
+          format: date
+        totalPremium:
+          type: number
+          format: double
+        currency:
+          type: string
+          example: USD
+        status:
+          type: string
+          enum:
+          - pending
+          - paid
+          - overdue
+          - void
+        dueDate:
+          type: string
+          format: date
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingLineItem'
+        createdAt:
+          type: string
+          format: date-time
+    BillingInvoiceList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingInvoice'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.unum.com/v1/oauth/token
+          scopes:
+            eligibility:read: Read member eligibility
+            eligibility:write: Write member eligibility
+            enrollment:read: Read enrollment elections
+            enrollment:write: Write enrollment elections
+            leave:read: Read leave requests
+            leave:write: Write leave requests
+            eoi:read: Read EOI submissions
+            eoi:write: Write EOI submissions
+            billing:read: Read billing invoices

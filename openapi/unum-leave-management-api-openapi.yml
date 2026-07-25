@@ -1,0 +1,298 @@
+openapi: 3.0.3
+info:
+  title: Unum HR Connect Authentication Leave Management API
+  description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
+  version: '1.0'
+  contact:
+    name: Unum Developer Support
+    url: https://developer.unum.com/s/
+  termsOfService: https://www.unum.com/legal
+servers:
+- url: https://api.unum.com/v1
+  description: Unum Production API
+security:
+- OAuth2:
+  - eligibility:read
+  - enrollment:read
+  - leave:read
+  - eoi:read
+  - billing:read
+tags:
+- name: Leave Management
+  description: Leave and absence request management
+paths:
+  /leave/requests:
+    get:
+      operationId: listLeaveRequests
+      summary: List Leave Requests
+      description: Retrieve a list of leave and absence requests.
+      tags:
+      - Leave Management
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Employer group identifier
+      - name: memberId
+        in: query
+        schema:
+          type: string
+        description: Filter by specific member
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - pending
+          - approved
+          - denied
+          - closed
+        description: Filter by leave request status
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of leave requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequestList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: submitLeaveRequest
+      summary: Submit Leave Request
+      description: Submit a new leave or absence request for a member.
+      tags:
+      - Leave Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestBody'
+      responses:
+        '201':
+          description: Leave request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /leave/requests/{requestId}:
+    get:
+      operationId: getLeaveRequest
+      summary: Get Leave Request
+      description: Retrieve details of a specific leave or absence request.
+      tags:
+      - Leave Management
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Leave request identifier
+      responses:
+        '200':
+          description: Leave request details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateLeaveRequest
+      summary: Update Leave Request
+      description: Update an existing leave request (e.g., extend dates, add documentation).
+      tags:
+      - Leave Management
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Leave request identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestBody'
+      responses:
+        '200':
+          description: Leave request updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    LeaveRequestList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaveRequest'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    LeaveRequestBody:
+      type: object
+      required:
+      - memberId
+      - groupId
+      - leaveType
+      - startDate
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        leaveType:
+          type: string
+          enum:
+          - fmla
+          - state-leave
+          - short-term-disability
+          - personal
+          - military
+        reason:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        continuousLeave:
+          type: boolean
+          default: true
+        intermittentLeave:
+          type: boolean
+          default: false
+    LeaveRequest:
+      type: object
+      properties:
+        requestId:
+          type: string
+        memberId:
+          type: string
+        groupId:
+          type: string
+        leaveType:
+          type: string
+          enum:
+          - fmla
+          - state-leave
+          - short-term-disability
+          - personal
+          - military
+        reason:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - pending
+          - approved
+          - denied
+          - closed
+        continuousLeave:
+          type: boolean
+        intermittentLeave:
+          type: boolean
+        returnToWorkDate:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.unum.com/v1/oauth/token
+          scopes:
+            eligibility:read: Read member eligibility
+            eligibility:write: Write member eligibility
+            enrollment:read: Read enrollment elections
+            enrollment:write: Write enrollment elections
+            leave:read: Read leave requests
+            leave:write: Write leave requests
+            eoi:read: Read EOI submissions
+            eoi:write: Write EOI submissions
+            billing:read: Read billing invoices

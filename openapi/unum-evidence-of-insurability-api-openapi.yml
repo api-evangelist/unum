@@ -1,0 +1,241 @@
+openapi: 3.0.3
+info:
+  title: Unum HR Connect Authentication Evidence of Insurability API
+  description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
+  version: '1.0'
+  contact:
+    name: Unum Developer Support
+    url: https://developer.unum.com/s/
+  termsOfService: https://www.unum.com/legal
+servers:
+- url: https://api.unum.com/v1
+  description: Unum Production API
+security:
+- OAuth2:
+  - eligibility:read
+  - enrollment:read
+  - leave:read
+  - eoi:read
+  - billing:read
+tags:
+- name: Evidence of Insurability
+  description: EOI submission and status tracking
+paths:
+  /eoi/submissions:
+    get:
+      operationId: listEoiSubmissions
+      summary: List EOI Submissions
+      description: Retrieve a list of evidence of insurability submissions.
+      tags:
+      - Evidence of Insurability
+      parameters:
+      - name: groupId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - pending
+          - approved
+          - denied
+          - incomplete
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of EOI submissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EoiSubmissionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: submitEoi
+      summary: Submit EOI
+      description: Submit a new evidence of insurability application.
+      tags:
+      - Evidence of Insurability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EoiSubmissionRequest'
+      responses:
+        '201':
+          description: EOI submission created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EoiSubmission'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /eoi/submissions/{submissionId}:
+    get:
+      operationId: getEoiSubmission
+      summary: Get EOI Submission
+      description: Retrieve the status and details of a specific EOI submission.
+      tags:
+      - Evidence of Insurability
+      parameters:
+      - name: submissionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: EOI submission identifier
+      responses:
+        '200':
+          description: EOI submission details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EoiSubmission'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    EoiSubmissionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EoiSubmission'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    EoiSubmission:
+      type: object
+      properties:
+        submissionId:
+          type: string
+        memberId:
+          type: string
+        groupId:
+          type: string
+        productType:
+          type: string
+          enum:
+          - life
+          - disability
+          - critical-illness
+        requestedBenefitAmount:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+          - pending
+          - approved
+          - denied
+          - incomplete
+          - more-information-required
+        decision:
+          type: string
+        decisionDate:
+          type: string
+          format: date
+        submittedAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    EoiSubmissionRequest:
+      type: object
+      required:
+      - memberId
+      - groupId
+      - productType
+      - requestedBenefitAmount
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        productType:
+          type: string
+          enum:
+          - life
+          - disability
+          - critical-illness
+        requestedBenefitAmount:
+          type: number
+          format: double
+        healthAnswers:
+          type: object
+          description: Health questionnaire answers
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.unum.com/v1/oauth/token
+          scopes:
+            eligibility:read: Read member eligibility
+            eligibility:write: Write member eligibility
+            enrollment:read: Read enrollment elections
+            enrollment:write: Write enrollment elections
+            leave:read: Read leave requests
+            leave:write: Write leave requests
+            eoi:read: Read EOI submissions
+            eoi:write: Write EOI submissions
+            billing:read: Read billing invoices
