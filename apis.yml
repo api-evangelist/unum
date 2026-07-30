@@ -6,7 +6,20 @@ description: >-
   integration, eligibility management, leave and absence management, enrollment, and evidence of insurability
   processing.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/unum.png
 tags:
   - Insurance
   - Benefits Administration
@@ -19,63 +32,125 @@ created: '2026-05-03'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: unum:hr-connect
-    name: Unum HR Connect API
-    description: >-
-      The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms
-      including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI), premium billing
-      calculations, leave and absence management, and enrollment data synchronization, eliminating manual EDI batch file
-      processing.
-    humanURL: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
-    baseURL: https://api.unum.com
-    tags:
-      - HR Integration
-      - Benefits Administration
-      - Eligibility
-      - Enrollment
-      - Leave Management
-    properties:
-      - type: Documentation
-        url: https://developer.unum.com/s/
-      - type: Website
-        url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/unum/refs/heads/main/openapi/unum-hr-connect-openapi.yml
-  - aid: unum:benefits-enrollment
-    name: Unum Benefits Enrollment API
-    description: >-
-      The Unum Benefits Enrollment API allows benefits administration platforms and HR systems to submit, update, and
-      manage employee benefit enrollments in real time. The API enables seamless data synchronization between employer
-      HR systems and Unum's benefits administration, supporting life events, open enrollment, and real-time quoting for
-      voluntary benefits.
-    humanURL: https://developer.unum.com/s/
-    baseURL: https://api.unum.com
-    tags:
-      - Benefits Enrollment
-      - Insurance
-      - Voluntary Benefits
-    properties:
-      - type: Documentation
-        url: https://developer.unum.com/s/
-      - type: Website
-        url: https://www.unum.com/employers/solutions/myunum
-  - aid: unum:leave-absence
-    name: Unum Leave and Absence Management API
-    description: >-
-      The Unum Leave and Absence Management API integrates Unum's leave solutions directly with HCM platforms,
-      automating leave request intake, status tracking, return-to-work coordination, and FMLA/state leave eligibility
-      determination. The API eliminates manual data entry by connecting leave workflows between employer HR systems and
-      Unum's leave management platform.
-    humanURL: https://developer.unum.com/s/
-    baseURL: https://api.unum.com
-    tags:
-      - Leave Management
-      - FMLA
-      - Absence Management
-      - HR Integration
-    properties:
-      - type: Documentation
-        url: https://developer.unum.com/s/
+- aid: unum:benefits-enrollment
+  name: Unum Benefits Enrollment API
+  description: >-
+    The Unum Benefits Enrollment API allows benefits administration platforms and HR systems to submit,
+    update, and manage employee benefit enrollments in real time. The API enables seamless data synchronization
+    between employer HR systems and Unum's benefits administration, supporting life events, open enrollment,
+    and real-time quoting for voluntary benefits.
+  humanURL: https://developer.unum.com/s/
+  baseURL: https://api.unum.com
+  tags:
+  - Benefits Enrollment
+  - Insurance
+  - Voluntary Benefits
+  properties:
+  - type: Documentation
+    url: https://developer.unum.com/s/
+  - type: Website
+    url: https://www.unum.com/employers/solutions/myunum
+- aid: unum:leave-absence
+  name: Unum Leave and Absence Management API
+  description: >-
+    The Unum Leave and Absence Management API integrates Unum's leave solutions directly with HCM platforms,
+    automating leave request intake, status tracking, return-to-work coordination, and FMLA/state leave
+    eligibility determination. The API eliminates manual data entry by connecting leave workflows between
+    employer HR systems and Unum's leave management platform.
+  humanURL: https://developer.unum.com/s/
+  baseURL: https://api.unum.com
+  tags:
+  - Leave Management
+  - FMLA
+  - Absence Management
+  - HR Integration
+  properties:
+  - type: Documentation
+    url: https://developer.unum.com/s/
+- aid: unum:unum-authentication-api
+  name: Unum Authentication API
+  description: OAuth 2.0 token management
+  humanURL: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+  baseURL: https://api.unum.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/unum-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developer.unum.com/s/
+  - type: Website
+    url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+- aid: unum:unum-billing-api
+  name: Unum Billing API
+  description: Premium billing and payment management
+  humanURL: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+  baseURL: https://api.unum.com
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/unum-billing-api-openapi.yml
+  - type: Documentation
+    url: https://developer.unum.com/s/
+  - type: Website
+    url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+- aid: unum:unum-eligibility-api
+  name: Unum Eligibility API
+  description: Member eligibility management and verification
+  humanURL: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+  baseURL: https://api.unum.com
+  tags:
+  - Eligibility
+  properties:
+  - type: OpenAPI
+    url: openapi/unum-eligibility-api-openapi.yml
+  - type: Documentation
+    url: https://developer.unum.com/s/
+  - type: Website
+    url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+- aid: unum:unum-enrollment-api
+  name: Unum Enrollment API
+  description: Benefits enrollment and lifecycle management
+  humanURL: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+  baseURL: https://api.unum.com
+  tags:
+  - Enrollment
+  properties:
+  - type: OpenAPI
+    url: openapi/unum-enrollment-api-openapi.yml
+  - type: Documentation
+    url: https://developer.unum.com/s/
+  - type: Website
+    url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+- aid: unum:unum-evidence-of-insurability-api
+  name: Unum Evidence of Insurability API
+  description: EOI submission and status tracking
+  humanURL: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+  baseURL: https://api.unum.com
+  tags:
+  - Evidence of Insurability
+  properties:
+  - type: OpenAPI
+    url: openapi/unum-evidence-of-insurability-api-openapi.yml
+  - type: Documentation
+    url: https://developer.unum.com/s/
+  - type: Website
+    url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+- aid: unum:unum-leave-management-api
+  name: Unum Leave Management API
+  description: Leave and absence request management
+  humanURL: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
+  baseURL: https://api.unum.com
+  tags:
+  - Leave Management
+  properties:
+  - type: OpenAPI
+    url: openapi/unum-leave-management-api-openapi.yml
+  - type: Documentation
+    url: https://developer.unum.com/s/
+  - type: Website
+    url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
 common:
   - type: AgenticAccess
     url: agentic-access/unum-agentic-access.yml
