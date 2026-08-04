@@ -1,0 +1,24 @@
+{
+  "provider": "unum",
+  "sources": [
+    "unum-authentication-api-openapi.yml",
+    "unum-billing-api-openapi.yml",
+    "unum-eligibility-api-openapi.yml",
+    "unum-enrollment-api-openapi.yml",
+    "unum-evidence-of-insurability-api-openapi.yml",
+    "unum-leave-management-api-openapi.yml"
+  ],
+  "outputs": [
+    "unum-authentication-api-openapi.yml",
+    "unum-billing-api-openapi.yml",
+    "unum-eligibility-api-openapi.yml",
+    "unum-enrollment-api-openapi.yml",
+    "unum-evidence-of-insurability-api-openapi.yml",
+    "unum-leave-management-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

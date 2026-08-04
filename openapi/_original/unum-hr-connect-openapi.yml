@@ -1,0 +1,1091 @@
+openapi: 3.0.3
+info:
+  title: Unum HR Connect API
+  description: >-
+    The Unum HR Connect API provides a secure, real-time connection between
+    Unum benefits and major HR platforms including Workday, ADP, and UKG.
+    It automates eligibility checks, evidence of insurability (EOI) processing,
+    premium billing calculations, leave and absence management, and enrollment
+    data synchronization for employers and HR technology partners.
+  version: '1.0'
+  contact:
+    name: Unum Developer Support
+    url: https://developer.unum.com/s/
+  termsOfService: https://www.unum.com/legal
+servers:
+  - url: https://api.unum.com/v1
+    description: Unum Production API
+
+tags:
+  - name: Eligibility
+    description: Member eligibility management and verification
+  - name: Enrollment
+    description: Benefits enrollment and lifecycle management
+  - name: Leave Management
+    description: Leave and absence request management
+  - name: Evidence of Insurability
+    description: EOI submission and status tracking
+  - name: Billing
+    description: Premium billing and payment management
+  - name: Authentication
+    description: OAuth 2.0 token management
+
+paths:
+  /oauth/token:
+    post:
+      operationId: getAccessToken
+      summary: Get Access Token
+      description: Obtain an OAuth 2.0 access token using client credentials for API authorization.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+                - client_id
+                - client_secret
+              properties:
+                grant_type:
+                  type: string
+                  enum: [client_credentials]
+                  description: OAuth grant type
+                client_id:
+                  type: string
+                  description: Client application identifier
+                client_secret:
+                  type: string
+                  description: Client application secret
+      responses:
+        '200':
+          description: Access token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /eligibility/members:
+    get:
+      operationId: listEligibleMembers
+      summary: List Eligible Members
+      description: Retrieve a list of eligible members for a given employer group.
+      tags:
+        - Eligibility
+      parameters:
+        - name: groupId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Employer group identifier
+        - name: effectiveDate
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Effective date for eligibility check (YYYY-MM-DD)
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+          description: Number of records per page
+      responses:
+        '200':
+          description: List of eligible members
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    post:
+      operationId: submitMemberEligibility
+      summary: Submit Member Eligibility
+      description: Submit or update member eligibility information for a group.
+      tags:
+        - Eligibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberEligibilityRequest'
+      responses:
+        '201':
+          description: Member eligibility created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /eligibility/members/{memberId}:
+    get:
+      operationId: getMemberEligibility
+      summary: Get Member Eligibility
+      description: Retrieve eligibility details for a specific member.
+      tags:
+        - Eligibility
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique member identifier
+      responses:
+        '200':
+          description: Member eligibility details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      operationId: updateMemberEligibility
+      summary: Update Member Eligibility
+      description: Update eligibility information for an existing member.
+      tags:
+        - Eligibility
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique member identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberEligibilityRequest'
+      responses:
+        '200':
+          description: Member eligibility updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    delete:
+      operationId: terminateMemberEligibility
+      summary: Terminate Member Eligibility
+      description: Terminate eligibility for a member (life event, termination, etc.).
+      tags:
+        - Eligibility
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Unique member identifier
+        - name: terminationDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Effective termination date
+        - name: terminationReason
+          in: query
+          schema:
+            type: string
+          description: Reason for termination
+      responses:
+        '204':
+          description: Member eligibility terminated
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /enrollment/elections:
+    get:
+      operationId: listEnrollmentElections
+      summary: List Enrollment Elections
+      description: Retrieve a list of benefit enrollment elections for a group.
+      tags:
+        - Enrollment
+      parameters:
+        - name: groupId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Employer group identifier
+        - name: planYear
+          in: query
+          schema:
+            type: integer
+          description: Plan year (e.g., 2026)
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of enrollment elections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentElectionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+    post:
+      operationId: submitEnrollmentElection
+      summary: Submit Enrollment Election
+      description: Submit a new benefit enrollment election for a member.
+      tags:
+        - Enrollment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollmentElectionRequest'
+      responses:
+        '201':
+          description: Enrollment election submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentElection'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /enrollment/elections/{electionId}:
+    get:
+      operationId: getEnrollmentElection
+      summary: Get Enrollment Election
+      description: Retrieve details of a specific enrollment election.
+      tags:
+        - Enrollment
+      parameters:
+        - name: electionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Enrollment election identifier
+      responses:
+        '200':
+          description: Enrollment election details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollmentElection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /leave/requests:
+    get:
+      operationId: listLeaveRequests
+      summary: List Leave Requests
+      description: Retrieve a list of leave and absence requests.
+      tags:
+        - Leave Management
+      parameters:
+        - name: groupId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Employer group identifier
+        - name: memberId
+          in: query
+          schema:
+            type: string
+          description: Filter by specific member
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, approved, denied, closed]
+          description: Filter by leave request status
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of leave requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequestList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+    post:
+      operationId: submitLeaveRequest
+      summary: Submit Leave Request
+      description: Submit a new leave or absence request for a member.
+      tags:
+        - Leave Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestBody'
+      responses:
+        '201':
+          description: Leave request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /leave/requests/{requestId}:
+    get:
+      operationId: getLeaveRequest
+      summary: Get Leave Request
+      description: Retrieve details of a specific leave or absence request.
+      tags:
+        - Leave Management
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Leave request identifier
+      responses:
+        '200':
+          description: Leave request details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      operationId: updateLeaveRequest
+      summary: Update Leave Request
+      description: Update an existing leave request (e.g., extend dates, add documentation).
+      tags:
+        - Leave Management
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Leave request identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestBody'
+      responses:
+        '200':
+          description: Leave request updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /eoi/submissions:
+    get:
+      operationId: listEoiSubmissions
+      summary: List EOI Submissions
+      description: Retrieve a list of evidence of insurability submissions.
+      tags:
+        - Evidence of Insurability
+      parameters:
+        - name: groupId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, approved, denied, incomplete]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of EOI submissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EoiSubmissionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+    post:
+      operationId: submitEoi
+      summary: Submit EOI
+      description: Submit a new evidence of insurability application.
+      tags:
+        - Evidence of Insurability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EoiSubmissionRequest'
+      responses:
+        '201':
+          description: EOI submission created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EoiSubmission'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /eoi/submissions/{submissionId}:
+    get:
+      operationId: getEoiSubmission
+      summary: Get EOI Submission
+      description: Retrieve the status and details of a specific EOI submission.
+      tags:
+        - Evidence of Insurability
+      parameters:
+        - name: submissionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: EOI submission identifier
+      responses:
+        '200':
+          description: EOI submission details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EoiSubmission'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /billing/invoices:
+    get:
+      operationId: listBillingInvoices
+      summary: List Billing Invoices
+      description: Retrieve premium billing invoices for an employer group.
+      tags:
+        - Billing
+      parameters:
+        - name: groupId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Employer group identifier
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter invoices from this date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter invoices up to this date
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of billing invoices
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingInvoiceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /billing/invoices/{invoiceId}:
+    get:
+      operationId: getBillingInvoice
+      summary: Get Billing Invoice
+      description: Retrieve details of a specific premium billing invoice.
+      tags:
+        - Billing
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Invoice identifier
+      responses:
+        '200':
+          description: Billing invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillingInvoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.unum.com/v1/oauth/token
+          scopes:
+            eligibility:read: Read member eligibility
+            eligibility:write: Write member eligibility
+            enrollment:read: Read enrollment elections
+            enrollment:write: Write enrollment elections
+            leave:read: Read leave requests
+            leave:write: Write leave requests
+            eoi:read: Read EOI submissions
+            eoi:write: Write EOI submissions
+            billing:read: Read billing invoices
+
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer access token
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration in seconds
+          example: 3600
+        scope:
+          type: string
+          description: Granted OAuth scopes
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+
+    Member:
+      type: object
+      properties:
+        memberId:
+          type: string
+          description: Unique member identifier
+        groupId:
+          type: string
+          description: Employer group identifier
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        employeeId:
+          type: string
+          description: Employer-assigned employee ID
+        hireDate:
+          type: string
+          format: date
+        employmentStatus:
+          type: string
+          enum: [active, terminated, on-leave]
+        coverages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Coverage'
+        effectiveDate:
+          type: string
+          format: date
+        terminationDate:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    MemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+
+    MemberEligibilityRequest:
+      type: object
+      required:
+        - groupId
+        - firstName
+        - lastName
+        - dateOfBirth
+        - employeeId
+        - hireDate
+        - employmentStatus
+        - effectiveDate
+      properties:
+        groupId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        employeeId:
+          type: string
+        hireDate:
+          type: string
+          format: date
+        employmentStatus:
+          type: string
+          enum: [active, terminated, on-leave]
+        effectiveDate:
+          type: string
+          format: date
+
+    Coverage:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum: [disability, life, dental, vision, critical-illness, accident]
+        planCode:
+          type: string
+        benefitAmount:
+          type: number
+          format: double
+        effectiveDate:
+          type: string
+          format: date
+        terminationDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [active, pending, terminated]
+
+    EnrollmentElection:
+      type: object
+      properties:
+        electionId:
+          type: string
+        memberId:
+          type: string
+        groupId:
+          type: string
+        planYear:
+          type: integer
+        elections:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenefitElection'
+        status:
+          type: string
+          enum: [pending, confirmed, cancelled]
+        submittedAt:
+          type: string
+          format: date-time
+        effectiveDate:
+          type: string
+          format: date
+
+    EnrollmentElectionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrollmentElection'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+
+    EnrollmentElectionRequest:
+      type: object
+      required:
+        - memberId
+        - groupId
+        - planYear
+        - elections
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        planYear:
+          type: integer
+        elections:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenefitElection'
+        effectiveDate:
+          type: string
+          format: date
+
+    BenefitElection:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum: [disability, life, dental, vision, critical-illness, accident]
+        planCode:
+          type: string
+        coverageLevel:
+          type: string
+          enum: [employee-only, employee-spouse, employee-children, family]
+        benefitAmount:
+          type: number
+          format: double
+        waived:
+          type: boolean
+          default: false
+
+    LeaveRequest:
+      type: object
+      properties:
+        requestId:
+          type: string
+        memberId:
+          type: string
+        groupId:
+          type: string
+        leaveType:
+          type: string
+          enum: [fmla, state-leave, short-term-disability, personal, military]
+        reason:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [pending, approved, denied, closed]
+        continuousLeave:
+          type: boolean
+        intermittentLeave:
+          type: boolean
+        returnToWorkDate:
+          type: string
+          format: date
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    LeaveRequestList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaveRequest'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+
+    LeaveRequestBody:
+      type: object
+      required:
+        - memberId
+        - groupId
+        - leaveType
+        - startDate
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        leaveType:
+          type: string
+          enum: [fmla, state-leave, short-term-disability, personal, military]
+        reason:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        continuousLeave:
+          type: boolean
+          default: true
+        intermittentLeave:
+          type: boolean
+          default: false
+
+    EoiSubmission:
+      type: object
+      properties:
+        submissionId:
+          type: string
+        memberId:
+          type: string
+        groupId:
+          type: string
+        productType:
+          type: string
+          enum: [life, disability, critical-illness]
+        requestedBenefitAmount:
+          type: number
+          format: double
+        status:
+          type: string
+          enum: [pending, approved, denied, incomplete, more-information-required]
+        decision:
+          type: string
+        decisionDate:
+          type: string
+          format: date
+        submittedAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    EoiSubmissionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EoiSubmission'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+
+    EoiSubmissionRequest:
+      type: object
+      required:
+        - memberId
+        - groupId
+        - productType
+        - requestedBenefitAmount
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        productType:
+          type: string
+          enum: [life, disability, critical-illness]
+        requestedBenefitAmount:
+          type: number
+          format: double
+        healthAnswers:
+          type: object
+          description: Health questionnaire answers
+
+    BillingInvoice:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+        groupId:
+          type: string
+        billingPeriodStart:
+          type: string
+          format: date
+        billingPeriodEnd:
+          type: string
+          format: date
+        totalPremium:
+          type: number
+          format: double
+        currency:
+          type: string
+          example: USD
+        status:
+          type: string
+          enum: [pending, paid, overdue, void]
+        dueDate:
+          type: string
+          format: date
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingLineItem'
+        createdAt:
+          type: string
+          format: date-time
+
+    BillingInvoiceList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingInvoice'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+
+    BillingLineItem:
+      type: object
+      properties:
+        lineItemId:
+          type: string
+        memberId:
+          type: string
+        productType:
+          type: string
+        planCode:
+          type: string
+        premium:
+          type: number
+          format: double
+        coverageLevel:
+          type: string
+
+security:
+  - OAuth2:
+      - eligibility:read
+      - enrollment:read
+      - leave:read
+      - eoi:read
+      - billing:read
