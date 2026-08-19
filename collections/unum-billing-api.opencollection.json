@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unum HR Connect Authentication Billing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.unum.com/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Billing Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/billing/invoices",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Employer group identifier"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices from this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices up to this date"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve premium billing invoices for an employer group."
+        },
+        {
+          "info": {
+            "name": "Get Billing Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/billing/invoices/:invoiceId",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path",
+                "description": "Invoice identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific premium billing invoice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

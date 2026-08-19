@@ -1,0 +1,955 @@
+{
+  "item": [
+    {
+      "id": "e1a0887b-e1a7-493e-aafd-631b98c588d9",
+      "name": "Leave Management",
+      "description": {
+        "content": "Leave and absence request management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fccdd4cd-1380-4b87-a1d5-8c45a673c88e",
+          "name": "List Leave Requests",
+          "request": {
+            "name": "List Leave Requests",
+            "description": {
+              "content": "Retrieve a list of leave and absence requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) Employer group identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "memberId",
+                  "value": "<string>",
+                  "description": "Filter by specific member"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by leave request status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2978c20-aaa1-441e-a9fe-63273314419f",
+              "name": "List of leave requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"requestId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"leaveType\": \"state-leave\",\n      \"reason\": \"string\",\n      \"startDate\": \"1958-12-09\",\n      \"endDate\": \"1963-08-02\",\n      \"status\": \"approved\",\n      \"continuousLeave\": false,\n      \"intermittentLeave\": false,\n      \"returnToWorkDate\": \"2023-05-18\",\n      \"createdAt\": \"1996-01-21T00:45:18.052Z\",\n      \"updatedAt\": \"2025-12-16T01:20:35.873Z\"\n    },\n    {\n      \"requestId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"leaveType\": \"military\",\n      \"reason\": \"string\",\n      \"startDate\": \"1970-10-28\",\n      \"endDate\": \"1971-05-06\",\n      \"status\": \"denied\",\n      \"continuousLeave\": true,\n      \"intermittentLeave\": true,\n      \"returnToWorkDate\": \"1949-08-09\",\n      \"createdAt\": \"1976-03-06T04:34:55.058Z\",\n      \"updatedAt\": \"1958-03-23T05:43:01.387Z\"\n    }\n  ],\n  \"total\": 5122,\n  \"page\": 1704,\n  \"limit\": 1609\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "280f1b5a-8684-42d4-955c-e682d07da11d",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "memberId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0cda1f6-e0e7-4934-a7d2-99effdb32596",
+          "name": "Submit Leave Request",
+          "request": {
+            "name": "Submit Leave Request",
+            "description": {
+              "content": "Submit a new leave or absence request for a member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b235d5c-e50f-421f-a24b-9f111c1dc6e3",
+              "name": "Leave request submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"leaveType\": \"military\",\n  \"reason\": \"string\",\n  \"startDate\": \"2010-05-30\",\n  \"endDate\": \"1955-05-11\",\n  \"status\": \"pending\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false,\n  \"returnToWorkDate\": \"1993-06-09\",\n  \"createdAt\": \"1961-04-17T06:46:02.450Z\",\n  \"updatedAt\": \"1987-05-25T16:36:19.930Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b10fbfa1-588c-402e-9666-31f55b106577",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f2cf580-c403-4a90-8f27-491adbabbd3e",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c5b248a-b2e8-4d9b-b09b-761ba4a74969",
+          "name": "Get Leave Request",
+          "request": {
+            "name": "Get Leave Request",
+            "description": {
+              "content": "Retrieve details of a specific leave or absence request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) Leave request identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94c57756-b2cb-4d6a-aa31-47da7b710231",
+              "name": "Leave request details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"leaveType\": \"military\",\n  \"reason\": \"string\",\n  \"startDate\": \"2010-05-30\",\n  \"endDate\": \"1955-05-11\",\n  \"status\": \"pending\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false,\n  \"returnToWorkDate\": \"1993-06-09\",\n  \"createdAt\": \"1961-04-17T06:46:02.450Z\",\n  \"updatedAt\": \"1987-05-25T16:36:19.930Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8913d67-fb80-4eba-9163-5dc49307fd3d",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bc5e245-a729-4b63-8a65-c7c35ce4c283",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30afc1ef-7b21-4885-8701-6b6a990cee2d",
+          "name": "Update Leave Request",
+          "request": {
+            "name": "Update Leave Request",
+            "description": {
+              "content": "Update an existing leave request (e.g., extend dates, add documentation).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leave",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) Leave request identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a5e97ee-12fe-47ff-8837-09ba873f7ce6",
+              "name": "Leave request updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"leaveType\": \"military\",\n  \"reason\": \"string\",\n  \"startDate\": \"2010-05-30\",\n  \"endDate\": \"1955-05-11\",\n  \"status\": \"pending\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false,\n  \"returnToWorkDate\": \"1993-06-09\",\n  \"createdAt\": \"1961-04-17T06:46:02.450Z\",\n  \"updatedAt\": \"1987-05-25T16:36:19.930Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f36a752-37d6-46ee-b567-2e5dca80c54c",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f15a4c67-3e2e-4c9c-b4ce-d63163425841",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2355e9b7-9a99-4c27-8418-188eed1e6b56",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leave",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Leave request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"leaveType\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"reason\": \"<string>\",\n  \"endDate\": \"<date>\",\n  \"continuousLeave\": true,\n  \"intermittentLeave\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unum.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "eligibility:read eligibility:write enrollment:read enrollment:write leave:read leave:write eoi:read eoi:write billing:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.unum.com/v1/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "924a9402-a0d4-4fd3-81f5-1426418ad9d3",
+    "name": "Unum HR Connect Authentication Leave Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.\n\nContact Support:\n Name: Unum Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

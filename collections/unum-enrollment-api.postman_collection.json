@@ -1,0 +1,639 @@
+{
+  "item": [
+    {
+      "id": "3e9b5216-ec09-4247-aa99-f1c60eea8cd9",
+      "name": "Enrollment",
+      "description": {
+        "content": "Benefits enrollment and lifecycle management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02326fc9-d761-4c60-8183-6dbaf0defd8f",
+          "name": "List Enrollment Elections",
+          "request": {
+            "name": "List Enrollment Elections",
+            "description": {
+              "content": "Retrieve a list of benefit enrollment elections for a group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrollment",
+                "elections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) Employer group identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "planYear",
+                  "value": "<integer>",
+                  "description": "Plan year (e.g., 2026)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6be47973-92e3-4f04-b043-d8849b3562b1",
+              "name": "List of enrollment elections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"electionId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"planYear\": 5720,\n      \"elections\": [\n        {\n          \"productType\": \"accident\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"family\",\n          \"benefitAmount\": 9648.85548354685,\n          \"waived\": false\n        },\n        {\n          \"productType\": \"disability\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"employee-only\",\n          \"benefitAmount\": 135.43493744958334,\n          \"waived\": false\n        }\n      ],\n      \"status\": \"cancelled\",\n      \"submittedAt\": \"2021-03-23T23:16:49.570Z\",\n      \"effectiveDate\": \"2019-01-01\"\n    },\n    {\n      \"electionId\": \"string\",\n      \"memberId\": \"string\",\n      \"groupId\": \"string\",\n      \"planYear\": 4358,\n      \"elections\": [\n        {\n          \"productType\": \"critical-illness\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"family\",\n          \"benefitAmount\": 2465.1255137028784,\n          \"waived\": false\n        },\n        {\n          \"productType\": \"accident\",\n          \"planCode\": \"string\",\n          \"coverageLevel\": \"family\",\n          \"benefitAmount\": 2880.3960051581757,\n          \"waived\": false\n        }\n      ],\n      \"status\": \"confirmed\",\n      \"submittedAt\": \"1991-11-26T14:40:14.506Z\",\n      \"effectiveDate\": \"1970-10-11\"\n    }\n  ],\n  \"total\": 3048,\n  \"page\": 2172,\n  \"limit\": 6399\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "483ca6a0-c5de-4615-9292-10b1ee2c2a31",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "planYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de8c684d-4cfd-4a81-9bc4-efb7dff63e19",
+          "name": "Submit Enrollment Election",
+          "request": {
+            "name": "Submit Enrollment Election",
+            "description": {
+              "content": "Submit a new benefit enrollment election for a member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrollment",
+                "elections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38ad7fb2-e78c-43b1-bf9e-06aa576f08b1",
+              "name": "Enrollment election submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"electionId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"planYear\": 2699,\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"status\": \"pending\",\n  \"submittedAt\": \"1955-08-19T12:37:46.903Z\",\n  \"effectiveDate\": \"2009-02-02\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4528a865-ef71-445a-aff8-82a99d3ea9b7",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b80d0220-0e06-46f6-949d-cf3c2db64b78",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"memberId\": \"<string>\",\n  \"groupId\": \"<string>\",\n  \"planYear\": \"<integer>\",\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"effectiveDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c6bde26-1d50-42f3-b3b7-6205d6821db0",
+          "name": "Get Enrollment Election",
+          "request": {
+            "name": "Get Enrollment Election",
+            "description": {
+              "content": "Retrieve details of a specific enrollment election.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "enrollment",
+                "elections",
+                ":electionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "electionId",
+                  "description": "(Required) Enrollment election identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ff7ff8c-fd67-4bdd-ab17-d886bd38dc97",
+              "name": "Enrollment election details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections",
+                    ":electionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "electionId",
+                      "description": "(Required) Enrollment election identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"electionId\": \"string\",\n  \"memberId\": \"string\",\n  \"groupId\": \"string\",\n  \"planYear\": 2699,\n  \"elections\": [\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    },\n    {\n      \"productType\": \"<string>\",\n      \"planCode\": \"<string>\",\n      \"coverageLevel\": \"<string>\",\n      \"benefitAmount\": \"<double>\",\n      \"waived\": false\n    }\n  ],\n  \"status\": \"pending\",\n  \"submittedAt\": \"1955-08-19T12:37:46.903Z\",\n  \"effectiveDate\": \"2009-02-02\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "835fbd87-2df1-4ac5-862a-5a5848a01075",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections",
+                    ":electionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "electionId",
+                      "description": "(Required) Enrollment election identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7a9b72d-61dd-4c4a-a31f-6e8dfef01316",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "enrollment",
+                    "elections",
+                    ":electionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "electionId",
+                      "description": "(Required) Enrollment election identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unum.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "eligibility:read eligibility:write enrollment:read enrollment:write leave:read leave:write eoi:read eoi:write billing:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.unum.com/v1/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b2dd2492-2d69-4a11-9459-de537d4fa831",
+    "name": "Unum HR Connect Authentication Enrollment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.\n\nContact Support:\n Name: Unum Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

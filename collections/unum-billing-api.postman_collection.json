@@ -1,0 +1,448 @@
+{
+  "item": [
+    {
+      "id": "de84590e-b2cb-4a5d-ab2b-ef80f24736e6",
+      "name": "Billing",
+      "description": {
+        "content": "Premium billing and payment management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a0a81dc-94b0-4721-894c-77b01bb5f851",
+          "name": "List Billing Invoices",
+          "request": {
+            "name": "List Billing Invoices",
+            "description": {
+              "content": "Retrieve premium billing invoices for an employer group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "billing",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "groupId",
+                  "value": "<string>",
+                  "description": "(Required) Employer group identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Filter invoices from this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Filter invoices up to this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68513dd9-8b98-4d08-ada2-218d82b6aff2",
+              "name": "List of billing invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"invoiceId\": \"string\",\n      \"groupId\": \"string\",\n      \"billingPeriodStart\": \"1986-06-14\",\n      \"billingPeriodEnd\": \"1947-12-29\",\n      \"totalPremium\": 20.882278278057107,\n      \"currency\": \"USD\",\n      \"status\": \"pending\",\n      \"dueDate\": \"1982-04-28\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 8950.77490986981,\n          \"coverageLevel\": \"string\"\n        },\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 4713.379015758291,\n          \"coverageLevel\": \"string\"\n        }\n      ],\n      \"createdAt\": \"2023-07-09T00:21:53.347Z\"\n    },\n    {\n      \"invoiceId\": \"string\",\n      \"groupId\": \"string\",\n      \"billingPeriodStart\": \"1963-10-20\",\n      \"billingPeriodEnd\": \"2006-09-18\",\n      \"totalPremium\": 3394.9481506544907,\n      \"currency\": \"USD\",\n      \"status\": \"pending\",\n      \"dueDate\": \"1950-04-03\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 4355.0845223646975,\n          \"coverageLevel\": \"string\"\n        },\n        {\n          \"lineItemId\": \"string\",\n          \"memberId\": \"string\",\n          \"productType\": \"string\",\n          \"planCode\": \"string\",\n          \"premium\": 2250.1189877852566,\n          \"coverageLevel\": \"string\"\n        }\n      ],\n      \"createdAt\": \"2007-09-05T23:35:40.886Z\"\n    }\n  ],\n  \"total\": 205,\n  \"page\": 4212,\n  \"limit\": 9783\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d93c264-9945-4da5-ab0a-da04d699e953",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "groupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a57430fb-6dab-4e84-8dda-d39646f64a15",
+          "name": "Get Billing Invoice",
+          "request": {
+            "name": "Get Billing Invoice",
+            "description": {
+              "content": "Retrieve details of a specific premium billing invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "billing",
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) Invoice identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9dd3b361-850f-4659-b193-3f3a76c2566d",
+              "name": "Billing invoice details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceId\": \"string\",\n  \"groupId\": \"string\",\n  \"billingPeriodStart\": \"1950-11-19\",\n  \"billingPeriodEnd\": \"2025-05-28\",\n  \"totalPremium\": 5037.35893239894,\n  \"currency\": \"USD\",\n  \"status\": \"void\",\n  \"dueDate\": \"1953-11-25\",\n  \"lineItems\": [\n    {\n      \"lineItemId\": \"string\",\n      \"memberId\": \"string\",\n      \"productType\": \"string\",\n      \"planCode\": \"string\",\n      \"premium\": 8424.724270765695,\n      \"coverageLevel\": \"string\"\n    },\n    {\n      \"lineItemId\": \"string\",\n      \"memberId\": \"string\",\n      \"productType\": \"string\",\n      \"planCode\": \"string\",\n      \"premium\": 4189.640503929511,\n      \"coverageLevel\": \"string\"\n    }\n  ],\n  \"createdAt\": \"1957-07-06T01:17:51.940Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88e7e522-2321-4f3a-ba2e-ea1cf4b85258",
+              "name": "Authentication credentials missing or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69515adf-62fe-4571-9178-d2604a850716",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) Invoice identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unum.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "eligibility:read eligibility:write enrollment:read enrollment:write leave:read leave:write eoi:read eoi:write billing:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.unum.com/v1/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62b914be-d0ed-4ee1-936a-00660c69f50f",
+    "name": "Unum HR Connect Authentication Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.\n\nContact Support:\n Name: Unum Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

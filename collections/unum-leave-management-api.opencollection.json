@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Unum HR Connect Authentication Leave Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.unum.com/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leave Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Leave Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/leave/requests",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "query",
+                "description": "Employer group identifier"
+              },
+              {
+                "name": "memberId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific member"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by leave request status"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of leave and absence requests."
+        },
+        {
+          "info": {
+            "name": "Submit Leave Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unum.com/v1/leave/requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new leave or absence request for a member."
+        },
+        {
+          "info": {
+            "name": "Get Leave Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unum.com/v1/leave/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Leave request identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific leave or absence request."
+        },
+        {
+          "info": {
+            "name": "Update Leave Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.unum.com/v1/leave/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Leave request identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing leave request (e.g., extend dates, add documentation)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
