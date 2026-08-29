@@ -163,6 +163,9 @@ apis:
   - type: Website
     url: https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems
 common:
+  - type: CapabilityMap
+    url: capabilities/unum-capability-edges.yml
+    name: Unum Business Capability Map
   - type: AgenticAccess
     url: agentic-access/unum-agentic-access.yml
   - type: DomainSecurity

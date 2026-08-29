@@ -1,0 +1,37 @@
+slug: unum
+provider: Unum
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Insurance
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Billing
+  spec_file: unum-billing-api-openapi.yml
+  capability_id: BC-2150.10
+  capability_id_l1: BC-2150
+  capability_name: Premium Billing Management
+  confidence: 0.78
+  evidence: 'GET /billing/invoices listBillingInvoices List Billing Invoices; schemas BillingInvoice,
+    BillingLineItem; description: "automates ... premium billing calculations"'
+  reason: Insurer-side billing invoices for group benefit premiums, explicitly described as premium billing
+    calculation. Maps to Premium Billing Management; read-only surface keeps confidence below 0.9.
+- tag: Evidence of Insurability
+  spec_file: unum-evidence-of-insurability-api-openapi.yml
+  capability_id: BC-2130.10
+  capability_id_l1: BC-2130
+  capability_name: Underwriting Risk Intake
+  confidence: 0.7
+  evidence: POST /eoi/submissions  submitEoi  Submit EOI; schemas EoiSubmissionRequest, EoiSubmission;
+    "automates eligibility checks, evidence of insurability (EOI) processing"
+  reason: Evidence of insurability submissions are the collection of health/risk evidence supporting an
+    insurance application — underwriting risk intake for life/disability coverage. Operations create and
+    retrieve EOI submissions, not policy or claim records. Sub-capability choice (risk intake vs. decisioning)
+    is somewhat uncertain since the surface only carries submission lifecycle.
