@@ -1,7 +1,9 @@
 ---
 title: Digital Transformation
 url: https://careers.unum.com/global/en/digital-transformation
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Unum Group" press release artificial intelligence'
 position: 4
 source: serpapi-google

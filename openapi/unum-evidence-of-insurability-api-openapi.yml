@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unum HR Connect Authentication Evidence of Insurability API
+  title: Unum HR Connect Evidence of Insurability API
   description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
   version: '1.0'
   contact:
@@ -111,20 +111,50 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    EoiSubmissionList:
+    EoiSubmissionRequest:
       type: object
+      required:
+      - memberId
+      - groupId
+      - productType
+      - requestedBenefitAmount
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EoiSubmission'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
+        memberId:
+          type: string
+        groupId:
+          type: string
+        productType:
+          type: string
+          enum:
+          - life
+          - disability
+          - critical-illness
+        requestedBenefitAmount:
+          type: number
+          format: double
+        healthAnswers:
+          type: object
+          description: Health questionnaire answers
     EoiSubmission:
       type: object
       properties:
@@ -162,6 +192,19 @@ components:
         updatedAt:
           type: string
           format: date-time
+    EoiSubmissionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EoiSubmission'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
     Error:
       type: object
       properties:
@@ -180,49 +223,6 @@ components:
                 type: string
               message:
                 type: string
-    EoiSubmissionRequest:
-      type: object
-      required:
-      - memberId
-      - groupId
-      - productType
-      - requestedBenefitAmount
-      properties:
-        memberId:
-          type: string
-        groupId:
-          type: string
-        productType:
-          type: string
-          enum:
-          - life
-          - disability
-          - critical-illness
-        requestedBenefitAmount:
-          type: number
-          format: double
-        healthAnswers:
-          type: object
-          description: Health questionnaire answers
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     OAuth2:
       type: oauth2

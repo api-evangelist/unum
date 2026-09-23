@@ -1,7 +1,9 @@
 ---
 title: Unum Group builds custom AI application to search 1.3 ...
 url: https://www.microsoft.com/en/customers/story/1772120481217819586-unumgroup-azure-insurance-en-united-states
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Unum Group" press release artificial intelligence'
 position: 5
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: New Unum Total Leave ™ will help employers and ...
 url: https://investors.unum.com/news-events/news/news-details/2021/New-Unum-Total-Leave--will-help-employers-and-employees-better-manage-complex-leave-process-04-27-2021/default.aspx
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Unum Group" press release artificial intelligence'
 position: 1
 source: serpapi-google

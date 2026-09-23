@@ -1,12 +1,7 @@
 {
   "provider": "unum",
   "sources": [
-    "unum-authentication-api-openapi.yml",
-    "unum-billing-api-openapi.yml",
-    "unum-eligibility-api-openapi.yml",
-    "unum-enrollment-api-openapi.yml",
-    "unum-evidence-of-insurability-api-openapi.yml",
-    "unum-leave-management-api-openapi.yml"
+    "_original/unum-hr-connect-openapi.yml"
   ],
   "outputs": [
     "unum-authentication-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "unum-hr-connect-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "unum-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unum-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unum-eligibility-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unum-enrollment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unum-evidence-of-insurability-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "unum-leave-management-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

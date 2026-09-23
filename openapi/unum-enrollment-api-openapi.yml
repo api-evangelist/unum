@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unum HR Connect Authentication Enrollment API
+  title: Unum HR Connect Enrollment API
   description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
   version: '1.0'
   contact:
@@ -108,26 +108,61 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    BenefitElection:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum:
+          - disability
+          - life
+          - dental
+          - vision
+          - critical-illness
+          - accident
+        planCode:
+          type: string
+        coverageLevel:
+          type: string
+          enum:
+          - employee-only
+          - employee-spouse
+          - employee-children
+          - family
+        benefitAmount:
+          type: number
+          format: double
+        waived:
+          type: boolean
+          default: false
+    EnrollmentElection:
+      type: object
+      properties:
+        electionId:
+          type: string
+        memberId:
+          type: string
+        groupId:
+          type: string
+        planYear:
+          type: integer
+        elections:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenefitElection'
+        status:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - cancelled
+        submittedAt:
+          type: string
+          format: date-time
+        effectiveDate:
+          type: string
+          format: date
     EnrollmentElectionRequest:
       type: object
       required:
@@ -162,33 +197,6 @@ components:
           type: integer
         limit:
           type: integer
-    BenefitElection:
-      type: object
-      properties:
-        productType:
-          type: string
-          enum:
-          - disability
-          - life
-          - dental
-          - vision
-          - critical-illness
-          - accident
-        planCode:
-          type: string
-        coverageLevel:
-          type: string
-          enum:
-          - employee-only
-          - employee-spouse
-          - employee-children
-          - family
-        benefitAmount:
-          type: number
-          format: double
-        waived:
-          type: boolean
-          default: false
     Error:
       type: object
       properties:
@@ -207,33 +215,25 @@ components:
                 type: string
               message:
                 type: string
-    EnrollmentElection:
-      type: object
-      properties:
-        electionId:
-          type: string
-        memberId:
-          type: string
-        groupId:
-          type: string
-        planYear:
-          type: integer
-        elections:
-          type: array
-          items:
-            $ref: '#/components/schemas/BenefitElection'
-        status:
-          type: string
-          enum:
-          - pending
-          - confirmed
-          - cancelled
-        submittedAt:
-          type: string
-          format: date-time
-        effectiveDate:
-          type: string
-          format: date
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     OAuth2:
       type: oauth2

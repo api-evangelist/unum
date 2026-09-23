@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Unum HR Connect Authentication Eligibility API
+  title: Unum HR Connect Eligibility API
   description: The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI) processing, premium billing calculations, leave and absence management, and enrollment data synchronization for employers and HR technology partners.
   version: '1.0'
   contact:
@@ -178,7 +178,121 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Coverage:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum:
+          - disability
+          - life
+          - dental
+          - vision
+          - critical-illness
+          - accident
+        planCode:
+          type: string
+        benefitAmount:
+          type: number
+          format: double
+        effectiveDate:
+          type: string
+          format: date
+        terminationDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - active
+          - pending
+          - terminated
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    MemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    MemberEligibilityRequest:
+      type: object
+      required:
+      - groupId
+      - firstName
+      - lastName
+      - dateOfBirth
+      - employeeId
+      - hireDate
+      - employmentStatus
+      - effectiveDate
+      properties:
+        groupId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        employeeId:
+          type: string
+        hireDate:
+          type: string
+          format: date
+        employmentStatus:
+          type: string
+          enum:
+          - active
+          - terminated
+          - on-leave
+        effectiveDate:
+          type: string
+          format: date
     Member:
       type: object
       properties:
@@ -223,120 +337,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    MemberEligibilityRequest:
-      type: object
-      required:
-      - groupId
-      - firstName
-      - lastName
-      - dateOfBirth
-      - employeeId
-      - hireDate
-      - employmentStatus
-      - effectiveDate
-      properties:
-        groupId:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        dateOfBirth:
-          type: string
-          format: date
-        employeeId:
-          type: string
-        hireDate:
-          type: string
-          format: date
-        employmentStatus:
-          type: string
-          enum:
-          - active
-          - terminated
-          - on-leave
-        effectiveDate:
-          type: string
-          format: date
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    Coverage:
-      type: object
-      properties:
-        productType:
-          type: string
-          enum:
-          - disability
-          - life
-          - dental
-          - vision
-          - critical-illness
-          - accident
-        planCode:
-          type: string
-        benefitAmount:
-          type: number
-          format: double
-        effectiveDate:
-          type: string
-          format: date
-        terminationDate:
-          type: string
-          format: date
-        status:
-          type: string
-          enum:
-          - active
-          - pending
-          - terminated
-    MemberList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     OAuth2:
       type: oauth2
