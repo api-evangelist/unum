@@ -92,36 +92,38 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    BillingInvoiceList:
+    Error:
       type: object
       properties:
-        data:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
           type: array
           items:
-            $ref: '#/components/schemas/BillingInvoice'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-    BillingLineItem:
-      type: object
-      properties:
-        lineItemId:
-          type: string
-        memberId:
-          type: string
-        productType:
-          type: string
-        planCode:
-          type: string
-        premium:
-          type: number
-          format: double
-        coverageLevel:
-          type: string
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     BillingInvoice:
       type: object
       properties:
@@ -158,37 +160,35 @@ components:
         createdAt:
           type: string
           format: date-time
-    Error:
+    BillingInvoiceList:
       type: object
       properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        details:
+        data:
           type: array
           items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-  responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+            $ref: '#/components/schemas/BillingInvoice'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    BillingLineItem:
+      type: object
+      properties:
+        lineItemId:
+          type: string
+        memberId:
+          type: string
+        productType:
+          type: string
+        planCode:
+          type: string
+        premium:
+          type: number
+          format: double
+        coverageLevel:
+          type: string
   securitySchemes:
     OAuth2:
       type: oauth2

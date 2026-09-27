@@ -178,86 +178,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Coverage:
-      type: object
-      properties:
-        productType:
-          type: string
-          enum:
-          - disability
-          - life
-          - dental
-          - vision
-          - critical-illness
-          - accident
-        planCode:
-          type: string
-        benefitAmount:
-          type: number
-          format: double
-        effectiveDate:
-          type: string
-          format: date
-        terminationDate:
-          type: string
-          format: date
-        status:
-          type: string
-          enum:
-          - active
-          - pending
-          - terminated
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    MemberList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
     MemberEligibilityRequest:
       type: object
       required:
@@ -293,6 +214,66 @@ components:
         effectiveDate:
           type: string
           format: date
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    MemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    Coverage:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum:
+          - disability
+          - life
+          - dental
+          - vision
+          - critical-illness
+          - accident
+        planCode:
+          type: string
+        benefitAmount:
+          type: number
+          format: double
+        effectiveDate:
+          type: string
+          format: date
+        terminationDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - active
+          - pending
+          - terminated
     Member:
       type: object
       properties:
@@ -337,6 +318,25 @@ components:
         updatedAt:
           type: string
           format: date-time
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     OAuth2:
       type: oauth2
