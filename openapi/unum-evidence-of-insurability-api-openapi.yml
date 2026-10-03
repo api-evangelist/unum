@@ -111,6 +111,25 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -130,43 +149,6 @@ components:
                 type: string
               message:
                 type: string
-    EoiSubmissionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EoiSubmission'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-    EoiSubmissionRequest:
-      type: object
-      required:
-      - memberId
-      - groupId
-      - productType
-      - requestedBenefitAmount
-      properties:
-        memberId:
-          type: string
-        groupId:
-          type: string
-        productType:
-          type: string
-          enum:
-          - life
-          - disability
-          - critical-illness
-        requestedBenefitAmount:
-          type: number
-          format: double
-        healthAnswers:
-          type: object
-          description: Health questionnaire answers
     EoiSubmission:
       type: object
       properties:
@@ -204,25 +186,43 @@ components:
         updatedAt:
           type: string
           format: date-time
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    EoiSubmissionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EoiSubmission'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    EoiSubmissionRequest:
+      type: object
+      required:
+      - memberId
+      - groupId
+      - productType
+      - requestedBenefitAmount
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        productType:
+          type: string
+          enum:
+          - life
+          - disability
+          - critical-illness
+        requestedBenefitAmount:
+          type: number
+          format: double
+        healthAnswers:
+          type: object
+          description: Health questionnaire answers
   securitySchemes:
     OAuth2:
       type: oauth2

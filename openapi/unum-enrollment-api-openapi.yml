@@ -130,33 +130,19 @@ components:
         effectiveDate:
           type: string
           format: date
-    BenefitElection:
+    EnrollmentElectionList:
       type: object
       properties:
-        productType:
-          type: string
-          enum:
-          - disability
-          - life
-          - dental
-          - vision
-          - critical-illness
-          - accident
-        planCode:
-          type: string
-        coverageLevel:
-          type: string
-          enum:
-          - employee-only
-          - employee-spouse
-          - employee-children
-          - family
-        benefitAmount:
-          type: number
-          format: double
-        waived:
-          type: boolean
-          default: false
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrollmentElection'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
     Error:
       type: object
       properties:
@@ -175,19 +161,6 @@ components:
                 type: string
               message:
                 type: string
-    EnrollmentElectionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnrollmentElection'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
     EnrollmentElection:
       type: object
       properties:
@@ -215,7 +188,40 @@ components:
         effectiveDate:
           type: string
           format: date
+    BenefitElection:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum:
+          - disability
+          - life
+          - dental
+          - vision
+          - critical-illness
+          - accident
+        planCode:
+          type: string
+        coverageLevel:
+          type: string
+          enum:
+          - employee-only
+          - employee-spouse
+          - employee-children
+          - family
+        benefitAmount:
+          type: number
+          format: double
+        waived:
+          type: boolean
+          default: false
   responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
@@ -224,12 +230,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
       content:
         application/json:
           schema:

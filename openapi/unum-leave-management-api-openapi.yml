@@ -150,7 +150,91 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    LeaveRequestBody:
+      type: object
+      required:
+      - memberId
+      - groupId
+      - leaveType
+      - startDate
+      properties:
+        memberId:
+          type: string
+        groupId:
+          type: string
+        leaveType:
+          type: string
+          enum:
+          - fmla
+          - state-leave
+          - short-term-disability
+          - personal
+          - military
+        reason:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        continuousLeave:
+          type: boolean
+          default: true
+        intermittentLeave:
+          type: boolean
+          default: false
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    LeaveRequestList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaveRequest'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
     LeaveRequest:
       type: object
       properties:
@@ -196,90 +280,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
-    LeaveRequestList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/LeaveRequest'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
-    LeaveRequestBody:
-      type: object
-      required:
-      - memberId
-      - groupId
-      - leaveType
-      - startDate
-      properties:
-        memberId:
-          type: string
-        groupId:
-          type: string
-        leaveType:
-          type: string
-          enum:
-          - fmla
-          - state-leave
-          - short-term-disability
-          - personal
-          - military
-        reason:
-          type: string
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        continuousLeave:
-          type: boolean
-          default: true
-        intermittentLeave:
-          type: boolean
-          default: false
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     OAuth2:
       type: oauth2
