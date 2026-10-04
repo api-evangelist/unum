@@ -93,6 +93,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    BillingInvoiceList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingInvoice'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
     BillingInvoice:
       type: object
       properties:
@@ -129,19 +142,22 @@ components:
         createdAt:
           type: string
           format: date-time
-    BillingInvoiceList:
+    BillingLineItem:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillingInvoice'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
+        lineItemId:
+          type: string
+        memberId:
+          type: string
+        productType:
+          type: string
+        planCode:
+          type: string
+        premium:
+          type: number
+          format: double
+        coverageLevel:
+          type: string
     Error:
       type: object
       properties:
@@ -160,22 +176,6 @@ components:
                 type: string
               message:
                 type: string
-    BillingLineItem:
-      type: object
-      properties:
-        lineItemId:
-          type: string
-        memberId:
-          type: string
-        productType:
-          type: string
-        planCode:
-          type: string
-        premium:
-          type: number
-          format: double
-        coverageLevel:
-          type: string
   responses:
     NotFound:
       description: Resource not found

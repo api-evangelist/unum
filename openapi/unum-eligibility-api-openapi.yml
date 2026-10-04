@@ -179,41 +179,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    MemberEligibilityRequest:
-      type: object
-      required:
-      - groupId
-      - firstName
-      - lastName
-      - dateOfBirth
-      - employeeId
-      - hireDate
-      - employmentStatus
-      - effectiveDate
-      properties:
-        groupId:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        dateOfBirth:
-          type: string
-          format: date
-        employeeId:
-          type: string
-        hireDate:
-          type: string
-          format: date
-        employmentStatus:
-          type: string
-          enum:
-          - active
-          - terminated
-          - on-leave
-        effectiveDate:
-          type: string
-          format: date
     Coverage:
       type: object
       properties:
@@ -256,24 +221,41 @@ components:
           type: integer
         limit:
           type: integer
-    Error:
+    MemberEligibilityRequest:
       type: object
+      required:
+      - groupId
+      - firstName
+      - lastName
+      - dateOfBirth
+      - employeeId
+      - hireDate
+      - employmentStatus
+      - effectiveDate
       properties:
-        code:
+        groupId:
           type: string
-          description: Error code
-        message:
+        firstName:
           type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
+        lastName:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        employeeId:
+          type: string
+        hireDate:
+          type: string
+          format: date
+        employmentStatus:
+          type: string
+          enum:
+          - active
+          - terminated
+          - on-leave
+        effectiveDate:
+          type: string
+          format: date
     Member:
       type: object
       properties:
@@ -318,13 +300,25 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
@@ -333,6 +327,12 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:

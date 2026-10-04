@@ -60,7 +60,30 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Bearer access token
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token expiration in seconds
+          example: 3600
+        scope:
+          type: string
+          description: Granted OAuth scopes
     Error:
       type: object
       properties:
@@ -79,29 +102,6 @@ components:
                 type: string
               message:
                 type: string
-    AccessToken:
-      type: object
-      properties:
-        access_token:
-          type: string
-          description: Bearer access token
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-          description: Token expiration in seconds
-          example: 3600
-        scope:
-          type: string
-          description: Granted OAuth scopes
-  responses:
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     OAuth2:
       type: oauth2
