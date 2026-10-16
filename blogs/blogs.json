@@ -2,11 +2,14 @@
   "repo": "unum",
   "feeds": [
     {
-      "source": "https://developer.unum.com/s/",
-      "error": "URLError"
+      "source": "https://www.unum.com/employers/hr-trends",
+      "feed_url": "https://www.unum.com/employers/hr-trends",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 0,
   "agent_pulled": "2026-07-04",
   "feed_nature": "undetermined",
