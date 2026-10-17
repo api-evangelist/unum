@@ -151,19 +151,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    LeaveRequestList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/LeaveRequest'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
     LeaveRequest:
       type: object
       properties:
@@ -209,24 +196,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
     LeaveRequestBody:
       type: object
       required:
@@ -261,6 +230,37 @@ components:
         intermittentLeave:
           type: boolean
           default: false
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+    LeaveRequestList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LeaveRequest'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
   responses:
     NotFound:
       description: Resource not found

@@ -136,19 +136,6 @@ components:
         waived:
           type: boolean
           default: false
-    EnrollmentElectionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnrollmentElection'
-        total:
-          type: integer
-        page:
-          type: integer
-        limit:
-          type: integer
     EnrollmentElection:
       type: object
       properties:
@@ -176,6 +163,37 @@ components:
         effectiveDate:
           type: string
           format: date
+    EnrollmentElectionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnrollmentElection'
+        total:
+          type: integer
+        page:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
     EnrollmentElectionRequest:
       type: object
       required:
@@ -197,24 +215,6 @@ components:
         effectiveDate:
           type: string
           format: date
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        details:
-          type: array
-          items:
-            type: object
-            properties:
-              field:
-                type: string
-              message:
-                type: string
   responses:
     NotFound:
       description: Resource not found
@@ -222,14 +222,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
+    BadRequest:
+      description: Invalid request parameters
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
+    Unauthorized:
+      description: Authentication credentials missing or invalid
       content:
         application/json:
           schema:

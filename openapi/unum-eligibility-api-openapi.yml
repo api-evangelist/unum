@@ -178,36 +178,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Coverage:
-      type: object
-      properties:
-        productType:
-          type: string
-          enum:
-          - disability
-          - life
-          - dental
-          - vision
-          - critical-illness
-          - accident
-        planCode:
-          type: string
-        benefitAmount:
-          type: number
-          format: double
-        effectiveDate:
-          type: string
-          format: date
-        terminationDate:
-          type: string
-          format: date
-        status:
-          type: string
-          enum:
-          - active
-          - pending
-          - terminated
     MemberList:
       type: object
       properties:
@@ -256,6 +246,35 @@ components:
         effectiveDate:
           type: string
           format: date
+    Coverage:
+      type: object
+      properties:
+        productType:
+          type: string
+          enum:
+          - disability
+          - life
+          - dental
+          - vision
+          - critical-illness
+          - accident
+        planCode:
+          type: string
+        benefitAmount:
+          type: number
+          format: double
+        effectiveDate:
+          type: string
+          format: date
+        terminationDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+          - active
+          - pending
+          - terminated
     Member:
       type: object
       properties:
@@ -318,25 +337,6 @@ components:
                 type: string
               message:
                 type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication credentials missing or invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     OAuth2:
       type: oauth2
