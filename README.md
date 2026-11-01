@@ -1,4 +1,4 @@
-# Unum (unum)
+# Unum
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,100 +66,173 @@
 
 Unum Group is a leading provider of financial protection benefits including disability insurance, life insurance, dental insurance, vision insurance, and critical illness coverage. Unum's developer platform offers APIs for HR system integration, eligibility management, leave and absence management, enrollment, and evidence of insurability processing.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/unum/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/unum/refs/heads/main/apis.yml)
+**Areas:** Insurance · Benefits Administration · HR Integration · Disability Insurance · Life Insurance · Fortune 500 · Employee Benefits
 
-## Scope
+## Unum on APIs.io
 
-- **Type:** Index
+Everything profiled for Unum is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/unum/](https://apis.io/providers/unum/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Insurance
-- Benefits Administration
-- HR Integration
-- Disability Insurance
-- Life Insurance
+- [Unum Benefits Enrollment API](https://apis.io/apis/unum/benefits-enrollment/) — The Unum Benefits Enrollment API allows benefits administration platforms and HR systems to submit, update, and manage employee benefit enrollments in real…
+- [Unum Leave and Absence Management API](https://apis.io/apis/unum/leave-absence/) — The Unum Leave and Absence Management API integrates Unum's leave solutions directly with HCM platforms, automating leave request intake, status tracking,…
+- [Unum Authentication API](https://apis.io/apis/unum/unum-authentication-api/) — OAuth 2.0 token management
+- [Unum Billing API](https://apis.io/apis/unum/unum-billing-api/) — Premium billing and payment management
+- [Unum Eligibility API](https://apis.io/apis/unum/unum-eligibility-api/) — Member eligibility management and verification
+- [Unum Enrollment API](https://apis.io/apis/unum/unum-enrollment-api/) — Benefits enrollment and lifecycle management
+- [Unum Evidence of Insurability API](https://apis.io/apis/unum/unum-evidence-of-insurability-api/) — EOI submission and status tracking
+- [Unum Leave Management API](https://apis.io/apis/unum/unum-leave-management-api/) — Leave and absence request management
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-03
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Unum HR Connect API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Unum HR Connect API provides a secure, real-time connection between Unum benefits and major HR platforms including Workday, ADP, and UKG. It automates eligibility checks, evidence of insurability (EOI), premium billing calculations, leave and absence management, and enrollment data synchronization, eliminating manual EDI batch file processing.
+- [Unum Agentic Access](https://apis.io/agentic-access/unum/unum-agentic-access/)
 
-- **Human URL:** [https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems](https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems)
-- **Base URL:** `https://api.unum.com`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- HR Integration
-- Benefits Administration
-- Eligibility
-- Enrollment
-- Leave Management
+- [Unum Leave Request](https://apis.io/schemas/unum/unum-leave-request/)
+- [Unum Member](https://apis.io/schemas/unum/unum-member/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://developer.unum.com/s/)
-- [Website](https://www.unum.com/employers/hr-trends/api-integration-with-hr-systems)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/unum/refs/heads/main/openapi/unum-hr-connect-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/unum-hr-connect.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unum-hr-connect.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Unum Benefits Enrollment API
+- [Unum Member Structure](https://apis.io/json-structure/unum/unum-member-structure/)
 
-The Unum Benefits Enrollment API allows benefits administration platforms and HR systems to submit, update, and manage employee benefit enrollments in real time. The API enables seamless data synchronization between employer HR systems and Unum's benefits administration, supporting life events, open enrollment, and real-time quoting for voluntary benefits.
+#### JSON-LD (1)
 
-- **Human URL:** [https://developer.unum.com/s/](https://developer.unum.com/s/)
-- **Base URL:** `https://api.unum.com`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Unum Context](https://apis.io/jsonld/unum/unum-context/)
 
-- Benefits Enrollment
-- Insurance
-- Voluntary Benefits
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://developer.unum.com/s/)
-- [Website](https://www.unum.com/employers/solutions/myunum)
-- [Postman Collection](collections/unum-hr-connect.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unum-hr-connect.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Unum Vocabulary](https://apis.io/vocabularies/unum/unum-vocabulary/)
 
-### Unum Leave and Absence Management API
+#### Examples (3)
 
-The Unum Leave and Absence Management API integrates Unum's leave solutions directly with HCM platforms, automating leave request intake, status tracking, return-to-work coordination, and FMLA/state leave eligibility determination. The API eliminates manual data entry by connecting leave workflows between employer HR systems and Unum's leave management platform.
+Example requests and responses.
 
-- **Human URL:** [https://developer.unum.com/s/](https://developer.unum.com/s/)
-- **Base URL:** `https://api.unum.com`
+- [Unum List Eligible Members Example](https://apis.io/examples/unum/unum-list-eligible-members-example/)
+- [Unum Submit Eoi Example](https://apis.io/examples/unum/unum-submit-eoi-example/)
+- [Unum Submit Leave Request Example](https://apis.io/examples/unum/unum-submit-leave-request-example/)
 
-#### Tags
+#### Collections (7)
 
-- Leave Management
-- FMLA
-- Absence Management
-- HR Integration
+Postman and Open Collection request collections.
 
-#### Properties
+- [Unum HR Connect Authentication API](https://apis.io/collections/unum/open-unum-authentication-api/)
+- [Unum HR Connect Authentication Billing API](https://apis.io/collections/unum/open-unum-billing-api/)
+- [Unum HR Connect Authentication Eligibility API](https://apis.io/collections/unum/open-unum-eligibility-api/)
+- [Unum HR Connect Authentication Enrollment API](https://apis.io/collections/unum/open-unum-enrollment-api/)
+- [Unum HR Connect Authentication Evidence of Insurability API](https://apis.io/collections/unum/open-unum-evidence-of-insurability-api/)
+- [Unum HR Connect API](https://apis.io/collections/unum/open-unum-hr-connect/)
+- [Unum HR Connect Authentication Leave Management API](https://apis.io/collections/unum/open-unum-leave-management-api/)
 
-- [Documentation](https://developer.unum.com/s/)
-- [Postman Collection](collections/unum-hr-connect.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unum-hr-connect.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (2)
 
-## Common Properties
+Spectral rulesets for the provider's contracts.
 
-- [LinkedIn](https://www.linkedin.com/company/unum)
+- [Unum — jsonschema rules](https://apis.io/rules/unum/unum-jsonschema-spectral-rules/)
+- [Unum API Rules](https://apis.io/rules/unum/unum-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Unum Authentication](https://apis.io/security/unum/unum-authentication/)
+- [Unum Domain Security](https://apis.io/security/unum/unum-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Unum Scopes](https://apis.io/scopes/unum/unum-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Unum Plans Pricing](https://apis.io/plans/unum/unum-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Unum Rate Limits](https://apis.io/rate-limits/unum/unum-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Unum Finops](https://apis.io/finops/unum/unum-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.unum.com)
-- [Developer  Portal](https://developer.unum.com/s/)
 - [Documentation](https://developer.unum.com/s/)
 - [Blog](https://www.unum.com/employers/hr-trends)
-- [Case  Studies](https://www.broadcom.com/case-studies/automation/unum-better-leverages-apis-to-deepen-customer-relationships-and-improve-customer-loyalty)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 60.4 |
+| Contract governance | 13.6 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 5.3 |
+
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 29.8** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/unum/](https://apis.io/providers/unum/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Unum: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/unum/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
